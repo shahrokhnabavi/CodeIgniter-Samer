@@ -7,7 +7,15 @@ class Gallery extends CI_Controller {
 
 	public function index()
 	{
-		// echo "helloooooon";
+		$config = array('upload_path' => 'upload/',
+						'allowed_types' =>'jpg|jpeg|png|bmp',
+						'max_size' => 0,
+						'filename'=>url_title($this->input->post('file'));
+
+
+
+				   );
+
 		$this->load->view('image_view', $this->data);
 	}
 
