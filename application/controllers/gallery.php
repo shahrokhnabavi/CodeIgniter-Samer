@@ -7,8 +7,8 @@ class Gallery extends CI_Controller {
 
 	public function index()
 	{
-		echo "helloooooon";
-		// $this->load->view('image_view', $data);
+		// echo "helloooooon";
+		$this->load->view('image_view', $this->data);
 	}
 
 
