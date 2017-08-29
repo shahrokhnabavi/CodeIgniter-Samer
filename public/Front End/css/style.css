@@ -1,0 +1,36 @@
+.navbar-nav
+{
+ padding-left: 200px;
+ margin-right: 300px;
+}
+.navbar-nav a
+{
+ margin-left: 40px;
+ padding-left: 40px;
+ padding-right: 40px;
+}
+.first_row{
+	text-align: center;
+}
+hr.style {
+	width: 650px;
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+
+}
+hr.style:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.2em;
+    padding: 0 0.25em;
+    background: white;
+}
+.card
+{
+
+}
