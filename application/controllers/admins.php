@@ -38,6 +38,8 @@ class Admins extends CI_Controller
 			if( $result )
 			{
 				$passwd = $this->password( $this->input->post('passwd') );
+				echo $passwd;
+				die();
 				if( $passwd === $result['passwd'] )
 				{
 					$this->session->set_userdata('cUser', $result['id']);
@@ -129,4 +131,6 @@ class Admins extends CI_Controller
 	public function password( $password ){
 		return md5( $password .$this->config->item('encryption_key') ) ;
 	}
+
+
 }

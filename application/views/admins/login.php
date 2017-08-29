@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="well">
-                            <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                            <form id="loginForm" method="POST" action="<?=base_url()?>" novalidate="novalidate">
                                 <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
                                 <div class="form-group">
                                     <label for="email" class="control-label">Email</label>
