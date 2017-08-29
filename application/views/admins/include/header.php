@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-						<i class="glyphicon glyphicon-user"></i> <?= $currentAdminName; ?> <span class="caret hidden"></span>
+						<i class="glyphicon glyphicon-user"></i> Sheril I Will CHange it <span class="caret hidden"></span>
 					</a>
 					<ul id="g-account-menu" class="dropdown-menu hidden" role="menu">
 						<li><a href="#">My Profile</a></li>

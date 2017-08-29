@@ -54,4 +54,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Admin Panel by Shahrokh
 $route['admin']           = 'admins/login';
-$route['admin/(:any)']    = 'admins/pages/$1';
+// $route['admin/(:any)']    = 'admins/pages/$1';
+
+$route['admin/content']    = 'post';
