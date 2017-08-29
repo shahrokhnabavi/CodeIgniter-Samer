@@ -35,17 +35,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-xs-12">
                         <div class="well">
                             <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
                                 <div class="form-group">
-                                    <label for="username" class="control-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="example@gmail.com">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" title="Please enter you username" placeholder="example@gmail.com">
                                     <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="control-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
+                                    <input type="password" class="form-control" id="password" name="password" title="Please enter your password">
                                     <span class="help-block"></span>
                                 </div>
-                                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" id="remember"> Remember login
