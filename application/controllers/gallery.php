@@ -3,22 +3,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Gallery extends CI_Controller {
 
-	var $data =  array();
+
+	public function __construct(){
+
+		parent::__construct();
+        $this->load->helper(array('form', 'url'));
+	}
 
 	public function index()
 	{
-		$config = array('upload_path' => 'upload/',
-						'allowed_types' =>'jpg|jpeg|png|bmp',
-						'max_size' => 0,
-						'filename'=>url_title($this->input->post('file'));
 
+		$this->load->view('image_view', array('error' => '' ));
 
-
-				   );
-
-		$this->load->view('image_view', $this->data);
 	}
+
+
+	public function upload()
+	{	
+		$config = [
+			'upload_path' => './upload/',
+			'allowed_types'=> 'jpg|jpeg|png|bmp|gif'
+		];
+		
+		$this->load->library('upload', $config); //Load the upload CI library
+
+
+		
+	if ( ! $this->upload->do_upload('userfile'))
+                {
+                        $error = array('error' => $this->upload->display_errors());
+
+                        $this->load->view('upload_form', $error);
+                }
+                else
+                {
+                        $data = array('upload_data' => $this->upload->data());
+
+                        $this->load->view('upload_success', $data);
+                }
 
 
 }
 
+}
+?>

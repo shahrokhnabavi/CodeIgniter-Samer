@@ -1,26 +1,20 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<title>Image Upload</title>
+<title>Upload Form</title>
 </head>
 <body>
 
-<h1>To upload image</h1>
+<?php echo $error;?>
 
-<?php
+<?php echo form_open_multipart('gallery/upload');?>
 
+<input type="file" name="userfile" size="20" />
 
-echo form_open_multipart();
+<br /><br />
 
-echo form_upload('file');
+<input type="submit" value="upload" />
 
-echo form_submit('upload', 'Upload');
-
-echo form_close();
-
-
-
-?>
+</form>
 
 </body>
 </html>
