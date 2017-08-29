@@ -1,7 +1,7 @@
 .navbar-nav
 {
  padding-left: 200px;
- margin-right: 300px;
+ margin-right: 250px;
 }
 .navbar-nav a
 {
@@ -30,7 +30,24 @@ hr.style:after {
     padding: 0 0.25em;
     background: white;
 }
-.card
-{
 
+.btn-primary{
+    color: white;
+    background: #343a40;
+    border-color: white;
+}
+.btn-primary:hover{
+        color: #343a40;
+    background: white;
+    border-color: white;
+}
+.card{
+    margin-left: 440px;
+}
+.footer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 50px;
+    background-color: #343a40;
+    font-size: 10px;
 }
