@@ -77,7 +77,11 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
+<<<<<<< HEAD
 	'password' => '',
+=======
+	'password' => 'root',
+>>>>>>> gallery
 	'database' => 'impact',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
