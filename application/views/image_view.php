@@ -6,6 +6,8 @@
 
 <?php echo $error;?>
 
+<!-- hello -->
+
 <?php echo form_open_multipart('gallery/upload');?>
 
 <input type="file" name="userfile" size="20" />
