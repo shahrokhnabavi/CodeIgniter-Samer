@@ -37,14 +37,8 @@ class Admins extends CI_Controller
 			$result = $this->user->getUserByEmail( $this->input->post('email',true) );
 			if( $result )
 			{
-				$passwd = $this->password( $this->input->post('passwd') );
-<<<<<<< HEAD
-				echo $passwd;
-				die();
-				if( $passwd === $result['passwd'] )
-=======
+				$passwd = $this->password( $this->input->post('password') );
 				if( $passwd === $result['password'] )
->>>>>>> gallery
 				{
 					$this->session->set_userdata('cUser', $result['id']);
 					redirect('admin/dashboard');

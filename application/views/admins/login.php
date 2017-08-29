@@ -34,10 +34,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="well">
-<<<<<<< HEAD
-                            <form id="loginForm" method="POST" action="<?=base_url()?>" novalidate="novalidate">
-                                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
-=======
                             <form id="loginForm" method="POST" action="<?= base_url('admin'); ?>" novalidate="novalidate">
                                 <?php
                                 if( $msg = validation_errors() )
@@ -45,7 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 if($msg = $this->session->flashdata('error') )
                                     echo '<div id="loginErrorMsg" class="alert alert-error">' . $msg . '</div>';
                                 ?>
->>>>>>> gallery
                                 <div class="form-group">
                                     <label for="email" class="control-label">Email</label>
                                     <input type="text" class="form-control" id="email" name="email" value="<?= set_value('email'); ?>" placeholder="example@gmail.com">
