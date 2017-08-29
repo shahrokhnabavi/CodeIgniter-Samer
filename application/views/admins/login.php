@@ -34,11 +34,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="well">
+<<<<<<< HEAD
                             <form id="loginForm" method="POST" action="<?=base_url()?>" novalidate="novalidate">
                                 <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+=======
+                            <form id="loginForm" method="POST" action="<?= base_url('admin'); ?>" novalidate="novalidate">
+                                <?php
+                                if( $msg = validation_errors() )
+                                    echo '<div id="loginErrorMsg" class="alert alert-error">' . $msg . '</div>';
+                                if($msg = $this->session->flashdata('error') )
+                                    echo '<div id="loginErrorMsg" class="alert alert-error">' . $msg . '</div>';
+                                ?>
+>>>>>>> gallery
                                 <div class="form-group">
                                     <label for="email" class="control-label">Email</label>
-                                    <input type="text" class="form-control" id="email" name="email" title="Please enter you username" placeholder="example@gmail.com">
+                                    <input type="text" class="form-control" id="email" name="email" value="<?= set_value('email'); ?>" placeholder="example@gmail.com">
                                     <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
@@ -46,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <input type="password" class="form-control" id="password" name="password" title="Please enter your password">
                                     <span class="help-block"></span>
                                 </div>
-                                <div class="checkbox">
+                                <div class="checkbox hidden">
                                     <label>
                                         <input type="checkbox" name="remember" id="remember"> Remember login
                                     </label>

@@ -38,40 +38,96 @@ class Admins extends CI_Controller
 			if( $result )
 			{
 				$passwd = $this->password( $this->input->post('passwd') );
+<<<<<<< HEAD
 				echo $passwd;
 				die();
 				if( $passwd === $result['passwd'] )
+=======
+				if( $passwd === $result['password'] )
+>>>>>>> gallery
 				{
 					$this->session->set_userdata('cUser', $result['id']);
-					redirect('user-profile');
+					redirect('admin/dashboard');
 				}
 				else
-					$this->session->set_flashdata( 'login-error', 'The password does not match.' );
+					$this->session->set_flashdata( 'error', 'The password does not match.' );
 
 			} else
-				$this->session->set_flashdata(
-					'login-error',
-					'This E-mail address does not exist. Please <a href="' . base_url('registration') . '">register</a>!'
-				);
+				$this->session->set_flashdata('error', 'This E-mail address does not exist!');
 
-			redirect('admins/login');
+			redirect('admin');
 		}
-
-
 
 		$this->load->view('admins/login');
 	}
 
-	public function logout()
-	{
-		$this->session->sess_destroy();
-		redirect('admin');
-	}
 
-	public function dashboard()
+	public function pages( $page)
 	{
 		$this->userLoggedIn('admin', false);
-		$this->load->view('admins/dashboard');
+
+		switch( $page ) {
+			case 'dashboard':
+				$pageData = array();
+				$pageContent     = $this->load->view('admins/dashboard', $pageData, true);
+				$currentPageName = 'Dashboard';
+				$currentPageIcon = 'dashboard';
+				break;
+
+			case 'envelope':
+				$pageData = array();
+				$pageContent     = $this->load->view('admins/subscription', $pageData, true);
+				$currentPageName = 'Subscription';
+				$currentPageIcon = 'envelope';
+				break;
+
+			case 'content':
+				$pageData = array();
+				$pageContent     = $this->load->view('admins/content', $pageData, true);
+				$currentPageName = 'Content';
+				$currentPageIcon = 'envelope';
+				break;
+
+			case 'gallery':
+				$pageData = array();
+				$pageContent     = $this->load->view('admins/gallery', $pageData, true);
+				$currentPageName = 'Gallery';
+				$currentPageIcon = 'picture';
+				break;
+
+			case 'user':
+				$pageData = array();
+				$pageContent     = $this->load->view('admins/user', $pageData, true);
+				$currentPageName = 'Users';
+				$currentPageIcon = 'user';
+				break;
+
+			case 'setting':
+				$pageData = array();
+				$pageContent     = $this->load->view('admins/setting', $pageData, true);
+				$currentPageName = 'Settings';
+				$currentPageIcon = 'cog';
+				break;
+
+			case 'logout':
+				$this->session->sess_destroy();
+				redirect('admin');
+				break;
+			default:
+				die('Access Denied!');
+				break;
+		}
+
+
+
+		$data = array(
+			'currentAdminName' => $this->getAdminName(),
+			'pageContent'	   => $pageContent,
+			'currentPageName'  => $currentPageName,
+			'currentPageIcon'  => $currentPageIcon
+		);
+
+		$this->load->view('admins/main', $data);
 	}
 
 	public function users()
@@ -83,6 +139,12 @@ class Admins extends CI_Controller
 
 
 
+
+	public function getAdminName(){
+		$id = $this->session->userdata('cUser');
+		$record = $this->user->getUserById( $id );
+		return $record['name'];
+	}
 
 
 
