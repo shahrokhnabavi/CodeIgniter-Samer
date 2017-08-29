@@ -8,14 +8,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Samer Abdelnour</title>
+    <title>Gallery</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/business-frontpage.css" rel="stylesheet">
+    <link href="css/thumbnail-gallery.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+<style>
+  #form5{
+    width: 250px;
+  }
+</style>
   </head>
 
   <body>
@@ -48,71 +53,44 @@
           </ul>
         </div>
       </div>
-    </nav>
-
-    <!-- Header with Background Image -->
-    <header class="business-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h1 class="display-3 text-center text-white mt-4"></h1>
-          </div>
-        </div>
-      </div>
-    </header>
+    </nav><br><br><br>
 
     <!-- Page Content -->
-      <div class="container-fluid">
-        <div class="col-sm-2 my-12">
-           <div class="card-body1">
-              <p class="card-title">Subscribe</p>
-              <form action="" method="POST">
-              <input type="hidden" name="subscribe" value="subscribe">
-              <input class="subfield" type="text" name="sub" placeholder="Enter Your E-Email">
-              <input class="btn btn-primary btn-sm" type="submit" value="Register">
-              </form>
-            </div>
-          </div>
-          </div>
     <div class="container">
-     <div class="row">
-      <div class="col-sm-12 first_row">
-        <hr class="style">
-        Welcome to Samer Abdelnouer cultural website.<br>
-        Here some info text...<br>
-        Here some info text...<br>
-        <hr class="style"><br><br>
-      </div>
-
-
-     </div>
-    <!-- /.row -->
-      
-
       <div class="row">
-        <div class="col-sm-12 my-12">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Event Title</h4>
-              <p class="card-text">Sheril work here for event posts</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary btn-sm">Find Out More!</a>
-            </div>
-          </div>
+        <div class="col-md-12">
+        <p> ADDRESS AND OTHER INFORMATION TAKES PLACE HERE<br>ADDRESS AND OTHER INFORMATION TAKES PLACE HERE<br> </p>
         </div>
       </div>
-      </div> <!-- CONTAINER -->
+    </div>
 
-      <!-- /.row -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="md-form">
+          <form  action="" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="contact" value="contact">
+            <label for="form5">Name: </label>
+             <input placeholder="Full Name" type="text" id="form5" class="form-control">
+            <label for="form5">E-Mail: </label>
+             <input placeholder="Full Name" type="text" id="form5" class="form-control">
+              Your message:<br>
+            <textarea class="form-control" name="message" rows="4" cols="60"></textarea><br>
+            <input class="btn btn-primary btn-sm" type="submit" value="Send email"/>
+           </form>
+      </div>  
+        </div>
+          </div>
+            </div>
+    <!-- /.container -->
+
     <!-- Footer -->
     <div class="footer">
-    	<div class="container">
-    		<p class="m-0 text-center text-white">Copyright &copy; Triple S.S.S</p>
-    	</div>
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Triple S.S.S</p>
+      </div>
     </div>
     <!-- /. Footer -->
-
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
