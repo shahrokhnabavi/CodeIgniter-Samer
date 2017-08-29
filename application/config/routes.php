@@ -49,9 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
-$route['404_override'] = '';
-$route['newpage']='welcome/new_me';
-$route['imagepage']='gallery';
-
 $route['translate_uri_dashes'] = FALSE;
+
+
+// Admin Panel by Shahrokh
+$route['admin']           = 'admins/login';
+$route['admin/dashboard'] = 'admins/dashboard';
+$route['admin/content']   = 'admins/content';
+$route['admin/gallery']   = 'admins/gallery';
+$route['admin/users']     = 'admins/users';
+$route['admin/setting']   = 'admins/setting';
+$route['admin/logout']    = 'admins/logout';
+$route['admin/subscription'] = 'admins/subscription';

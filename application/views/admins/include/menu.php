@@ -1,0 +1,24 @@
+<?php
+/**
+ * Created Shahrokh Nabavi.
+ * Date: 8/28/2017
+ * Time: 6:11 PM
+ */
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+<div class="col-sm-3">
+    <!-- Left column -->
+    <a href="#"><strong><i class="glyphicon glyphicon-list"></i> Menu</strong></a>
+
+    <hr>
+    <ul class="nav nav-stacked collapse in" id="userMenu">
+        <li class="active"> <a href="<?= base_url('admin/dashboard'); ?>"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Subscriptions <span class="badge badge-info">4</span></a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-tasks"></i> Content</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-picture"></i> Gallery</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Users</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Setting</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+    </ul>
+    <hr>
+</div>
