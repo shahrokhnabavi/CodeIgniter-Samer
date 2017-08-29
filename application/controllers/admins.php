@@ -144,30 +144,45 @@ class Admins extends CI_Controller
 				'field' => 'name',
 				'label' => 'User Name',
 				'rules' => 'trim|required|regex_match[/^[a-zA-Z ]+$/]'
-			),
-			array(
+			)
+		);
+		if( !$id ){
+			$validation[] = array(
 				'field' => 'passwd',
 				'label' => 'Password',
 				'rules' => 'trim|required|min_length[6]|max_length[16]'
-			),
-			array(
+			);
+			$validation[] = array(
 				'field' => 'confirm',
 				'label' => 'Confirm Password',
 				'rules' => 'trim|required|matches[passwd]'
-			)
-		);
+			);
+		}
 		$this->form_validation->set_rules($validation);
+
 
 		if( $this->form_validation->run() === true ) {
 
-			$user = array(
+			$sqlData = array(
 				'name'      => $this->input->post('name',true),
-				'email'     => $this->input->post('email',true),
-				'password'  => $this->password( $this->input->post('passwd',true) )
+				'email'     => $this->input->post('email',true)
 			);
-			$this->user->addUser( $user );
 
-			$this->session->set_flashdata('reg-success', 'Your user <b>ADDED</b> successfuly.');
+			if( $id )
+			{
+				if( !is_numeric($id) )
+					show_error('[Admins]: The type of parameter is not valid. Error is on line ' . __LINE__ );
+
+				$sqlData['updated_at'] = date("Y-m-d H:i:s");
+				$msg = $this->user->edit($sqlData, ['id' => $id], 'Your user is <b>UPDATED</b> successfuly.');
+			}
+			else
+			{
+				$sqlData['password'] = $this->password($this->input->post('passwd', true));
+				$msg = $this->user->add($sqlData, 'Your user is <b>ADDED</b> successfuly.');
+			}
+
+			$this->session->set_flashdata('reg-success',  $msg);
 			redirect('admin/user');
 		}
 
@@ -185,11 +200,7 @@ class Admins extends CI_Controller
 			'currentPageIcon'  => 'user',
 			'list'   	 => $this->user->getAll( $pg['perPage'], $pg['cPageNumbr'] ),
 			'update' 	 => $this->user->getByField('id', (int) $id ),
-			'rowNumber'  => $pg['perPage'] * $pg['cPageNumbr'],
-			'allPage'    => floor( $pg['count'] / $pg['count'] ),
-			'allRecord'  => $pg['count'],
-			'cPageNumbr' => $pg['cPageNumbr']
-//			'pageContent'	   => $this->load->view('admins/user', $dataInPage, true),
+			'paginating' => $pg
 		);
 
 		$this->load->view('admins/user', $data);
