@@ -20,6 +20,7 @@ class Gallery extends CI_Controller {
 
 	public function upload()
 	{	
+
 		$config = [
 			'upload_path' => './upload/',
 			'allowed_types'=> 'jpg|jpeg|png|bmp|gif'
@@ -33,10 +34,12 @@ class Gallery extends CI_Controller {
                 {
                         $error = array('error' => $this->upload->display_errors());
 
-                        $this->load->view('upload_form', $error);
+                        $this->load->view('image_view', $error);
                 }
                 else
                 {
+                        die('hello');
+
                         $data = array('upload_data' => $this->upload->data());
 
                         $this->load->view('upload_success', $data);
