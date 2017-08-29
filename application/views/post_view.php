@@ -11,7 +11,7 @@ if($this->input->post('action', true) === 'submit')
 	echo validation_errors();
 	}
 
-$administrator_id = $this->session->set_userdata('cUser');
+$administrator_id = $this->session->userdata('cUser');
  ?>
 <form action="<?php echo base_url('post/insert_post');?>" method="POST">
 Title<input type="text" name="title" placeholder="Title" value="<?=set_value('title');?>">
