@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | and its corresponding controller class/method. The segments in a
 | URL normally follow this pattern:
 |
-|	example.com/class/method/id/
+|	example.com/class/method/id/3
 |
 | In some instances, however, you may want to remap this relationship
 | so that a different class/function is called than the one
@@ -57,6 +57,7 @@ $route['admin']           = 'admins/login';
 
 
 $route['admin/content']    = 'post';
+$route['admin/emails']    = 'subscription';
 
 
 
