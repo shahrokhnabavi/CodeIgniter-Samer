@@ -136,7 +136,7 @@ class Post extends CI_Controller {
 
 
 	public function delete( $id ){
-
+		$this->user->loggedIn('admin', false);
 		
 		$this->load->model('Content_model');
 		$this->Content_model->delete($id );

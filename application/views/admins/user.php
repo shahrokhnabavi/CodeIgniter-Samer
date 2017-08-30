@@ -70,12 +70,14 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                         <td><?= $record['name']; ?></td>
                         <td><?= $record['email']; ?></td>
                         <td>
+                            <?php if( $record['id'] > 1 ) { ?>
                             <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/user/' . $record['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
                             </a>
                             <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-user/' . $record['id']); ?>">
                                 <i class="glyphicon glyphicon-trash"></i>Delete
                             </a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php } ?>

@@ -12,12 +12,10 @@ class Admins extends CI_Controller
 		parent::__construct();
 	}
 
-
-
-
+	
 	public function login()
 	{
-		$this->userLoggedIn('admin/dashboard');
+		$this->user->loggedIn('admin/dashboard');
 
 		$validation = array(
 			array(
@@ -57,12 +55,9 @@ class Admins extends CI_Controller
 		$this->load->view('admins/login');
 	}
 
+	public function form(  $page, $id  ){
 
-
-
-	public function users(  $page, $id  ){
-
-		$this->userLoggedIn('admin', false);
+		$this->user->loggedIn('admin', false);
 
 		$validation = array(
 			array(
@@ -143,7 +138,7 @@ class Admins extends CI_Controller
 	 * @param $id
 	 */
 	public function delete( $id ){
-		$this->userLoggedIn('login', false);
+		$this->user->loggedIn('admin', false);
 
 		if( !is_numeric($id) )
 			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
@@ -156,26 +151,13 @@ class Admins extends CI_Controller
 	}
 
 
-
-
-
 	/**
-	 * Type: Action
-	 * Desc: Check user if logged in or not
-	 *
-	 * @param null $url
-	 * @param bool $isLoggedin
-	 * @return mixed
+	 * Type: Page
+	 * Desc: Logout opration
 	 */
-	public function userLoggedIn( $url = null , $isLoggedin = true ){
-		if( $url === null )
-			return $this->session->userdata('cUser');
-
-		if( $isLoggedin && $this->session->userdata('cUser') )
-			redirect( $url );
-
-		if( !$isLoggedin && !$this->session->userdata('cUser') )
-			redirect( $url );
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('admins/');
 	}
 
 

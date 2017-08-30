@@ -64,7 +64,7 @@ Slug
                             <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/user/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
                             </a>
-                            <a class="btn btn-danger btn-xs" href="<?= base_url('post/delete-user/' . $posting['id']); ?>">
+                            <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-content/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-trash"></i>Delete
                             </a>
                         </td>
