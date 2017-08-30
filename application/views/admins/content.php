@@ -61,7 +61,7 @@ Slug
                         <td><?= $posting['title']; ?></td>
                         <td><?= $posting['description']; ?></td>
                         <td>
-                            <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/user/' . $posting['id']); ?>">
+                            <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/edit-content/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
                             </a>
                             <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-content/' . $posting['id']); ?>">
@@ -78,17 +78,6 @@ Slug
 
 
 
-
-
-
-
-                </div>
-
-            </div>
-            <!--/col-span-9-->
-        </div>
-    </div>
-    <!-- /Main -->
 
 <?php
 $this->load->view('admins/include/footer');
