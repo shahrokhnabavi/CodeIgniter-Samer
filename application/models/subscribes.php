@@ -14,4 +14,11 @@ class Subscribes extends CI_Model{
     		$query = "SELECT * FROM subscription ORDER BY subsription.created_at DESC";
     		return $this->db->query($query)->result_array();
     	}
+
+        function delete_subscriber($id)
+        {
+            $this->db->where('id',$id);
+            $this->db->delete();
+            return true;
+        }
 }

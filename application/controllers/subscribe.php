@@ -45,4 +45,10 @@ class Subscribe extends CI_Controller{
 
 	}
 
+	public function delete_member()
+	{
+		$this->load->model('subscribes');
+		$this->subscribes->delete_subscriber($id); 
+	}
+
 }
