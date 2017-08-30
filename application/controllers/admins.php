@@ -39,13 +39,6 @@ class Admins extends CI_Controller
 				$currentPageIcon = 'envelope';
 				break;
 
-			case 'gallery':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/gallery', $pageData, true);
-				$currentPageName = 'Gallery';
-				$currentPageIcon = 'picture';
-				break;
-
 			case 'setting':
 				$pageData = array();
 				$pageContent     = $this->load->view('admins/setting', $pageData, true);
@@ -53,25 +46,10 @@ class Admins extends CI_Controller
 				$currentPageIcon = 'cog';
 				break;
 
-			case 'logout':
-				$this->session->sess_destroy();
-				redirect('admin');
-				break;
 			default:
 				die('Access Denied!');
 				break;
 		}
-
-
-
-		$data = array(
-			'currentAdminName' => $this->getAdminName(),
-			'pageContent'	   => $pageContent,
-			'currentPageName'  => $currentPageName,
-			'currentPageIcon'  => $currentPageIcon
-		);
-
-		$this->load->view('admins/main', $data);
 	}
 
 
@@ -130,7 +108,7 @@ class Admins extends CI_Controller
 
 
 
-	public function users(  $page, $id  ){
+	public function form(  $page, $id  ){
 
 		$this->userLoggedIn('admin', false);
 
