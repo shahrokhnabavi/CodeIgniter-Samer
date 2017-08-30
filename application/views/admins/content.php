@@ -1,25 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('admins/include/header');
-?>
-    <!-- Main -->
-    <div class="container-fluid">
-        <div class="row">
-
-            <?php $this->load->view('admins/include/menu'); ?>
-
-            <!-- /col-3 -->
-            <div class="col-sm-9">
-
-                <a href="#"><strong><i class="glyphicon glyphicon-<?= $currentPageIcon; ?>"></i> <?= $currentPageName; ?></strong></a>
-                <hr>
-
-                <div class="row">
-                    <?php
-
-
-
-
 
 
 if($this->input->post('action', true) === 'add')
