@@ -10,6 +10,7 @@ class Subscribe extends CI_Controller{
 
 	}
 
+		// ADD SUBSCRIBER TO DATABASE
 	public function add_member()
 	{
 			$sub = $this->input->post('sub', TRUE);
@@ -21,17 +22,27 @@ class Subscribe extends CI_Controller{
 				$this->load->view('index');
 			} 
 		else 
-				{
-					$values = array(
-				    'email' => $this->input->post('sub', TRUE)
-				    );
-
-				    $this->load->model('subscribes');
-					$email = $this->subscribes->add_subscriber( $values );
-					redirect('/');
-					$this->session->set_flashdata('successMsg', 'Thanks for your subscription.');						
+			{
+				$values = array(
+				'email' => $this->input->post('sub', TRUE)
+				);
+				$this->load->model('subscribes');
+				$email = $this->subscribes->add_subscriber( $values );
+				redirect('/');
+				$this->session->set_flashdata('successMsg', 'Thanks for your subscription.');						
 					
 				}
+	}
+		// SHOW SUBSCRIBERS
+	public function show_members()
+	{
+				$this->load->model('subscribes');
+				$result = $this->subscribes->show_subscribers();
+				$data = array(
+				'all_emails' => $result,
+				);
+				$this->load->view('???????', $data);
+
 	}
 
 }
