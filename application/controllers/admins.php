@@ -10,9 +10,10 @@ class Admins extends CI_Controller
 {
 	public function __construct(){
 		parent::__construct();
-
-		$this->load->model('user');
 	}
+
+
+
 
 	public function login()
 	{
@@ -37,7 +38,7 @@ class Admins extends CI_Controller
 			$result = $this->user->getUserByEmail( $this->input->post('email',true) );
 			if( $result )
 			{
-				$passwd = $this->password( $this->input->post('password') );
+				$passwd = $this->password( $this->input->post('passwd') );
 				if( $passwd === $result['password'] )
 				{
 					$this->session->set_userdata('cUser', $result['id']);
@@ -56,88 +57,101 @@ class Admins extends CI_Controller
 	}
 
 
-	public function pages( $page)
-	{
+
+
+	public function users(  $page, $id  ){
+
 		$this->userLoggedIn('admin', false);
 
-		switch( $page ) {
-			case 'dashboard':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/dashboard', $pageData, true);
-				$currentPageName = 'Dashboard';
-				$currentPageIcon = 'dashboard';
-				break;
+		$validation = array(
+			array(
+				'field' => 'email',
+				'label' => 'E-Mail Address',
+				'rules' => 'trim|required|valid_email|is_unique[admins.email]'
+			),
+			array(
+				'field' => 'name',
+				'label' => 'User Name',
+				'rules' => 'trim|required|regex_match[/^[a-zA-Z ]+$/]'
+			)
+		);
+		if( !$id ){
+			$validation[] = array(
+				'field' => 'passwd',
+				'label' => 'Password',
+				'rules' => 'trim|required|min_length[6]|max_length[16]'
+			);
+			$validation[] = array(
+				'field' => 'confirm',
+				'label' => 'Confirm Password',
+				'rules' => 'trim|required|matches[passwd]'
+			);
+		}
+		$this->form_validation->set_rules($validation);
 
-			case 'envelope':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/subscription', $pageData, true);
-				$currentPageName = 'Subscription';
-				$currentPageIcon = 'envelope';
-				break;
 
-			case 'content':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/content', $pageData, true);
-				$currentPageName = 'Content';
-				$currentPageIcon = 'envelope';
-				break;
+		if( $this->form_validation->run() === true ) {
 
-			case 'gallery':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/gallery', $pageData, true);
-				$currentPageName = 'Gallery';
-				$currentPageIcon = 'picture';
-				break;
+			$sqlData = array(
+				'name'      => $this->input->post('name',true),
+				'email'     => $this->input->post('email',true)
+			);
 
-			case 'user':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/user', $pageData, true);
-				$currentPageName = 'Users';
-				$currentPageIcon = 'user';
-				break;
+			if( $id )
+			{
+				if( !is_numeric($id) )
+					show_error('[Admins]: The type of parameter is not valid. Error is on line ' . __LINE__ );
 
-			case 'setting':
-				$pageData = array();
-				$pageContent     = $this->load->view('admins/setting', $pageData, true);
-				$currentPageName = 'Settings';
-				$currentPageIcon = 'cog';
-				break;
+				$sqlData['updated_at'] = date("Y-m-d H:i:s");
+				$msg = $this->user->edit($sqlData, ['id' => $id], 'Your user is <b>UPDATED</b> successfuly.');
+			}
+			else
+			{
+				$sqlData['password'] = $this->password($this->input->post('passwd', true));
+				$msg = $this->user->add($sqlData, 'Your user is <b>ADDED</b> successfuly.');
+			}
 
-			case 'logout':
-				$this->session->sess_destroy();
-				redirect('admin');
-				break;
-			default:
-				die('Access Denied!');
-				break;
+			$this->session->set_flashdata('reg-success',  $msg);
+			redirect('admin/user');
 		}
 
 
 
-		$data = array(
-			'currentAdminName' => $this->getAdminName(),
-			'pageContent'	   => $pageContent,
-			'currentPageName'  => $currentPageName,
-			'currentPageIcon'  => $currentPageIcon
+		$id = (int) $id;
+		$pg = array(
+			'cPageNumbr' => (int) $page,
+			'count'		 => $this->user->count(),
+			'perPage'	 => 10
 		);
 
-		$this->load->view('admins/main', $data);
+		$data = array(
+			'currentPageName'  => 'Users',
+			'currentPageIcon'  => 'user',
+			'list'   	 => $this->user->getAll( $pg['perPage'], $pg['cPageNumbr'] ),
+			'update' 	 => $this->user->getByField('id', (int) $id ),
+			'paginating' => $pg
+		);
+
+		$this->load->view('admins/user', $data);
 	}
 
-	public function users()
-	{
-		$this->userLoggedIn('admin', false);
-		$this->load->view('admins/users');
-	}
+	/**
+	 * Type: Page
+	 * Desc: delete a record
+	 *
+	 * @param $id
+	 */
+	public function delete( $id ){
+		$this->userLoggedIn('login', false);
 
+		if( !is_numeric($id) )
+			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
 
+		if( (int) $id <= 1 )
+			show_error('[' . __CLASS__ . ']: This is a reserved ID and you can deleted it. Error is on line ' . __LINE__ );
 
-
-
-	public function getAdminName(){
-		$id = $this->session->userdata('cUser');
-		$record = $this->user->getUserById( $id );
-		return $record['name'];
+		$this->user->delete($id );
+		redirect('admin/user');
 	}
 
 
@@ -161,19 +175,6 @@ class Admins extends CI_Controller
 
 		if( !$isLoggedin && !$this->session->userdata('cUser') )
 			redirect( $url );
-	}
-
-
-	/**
-	 * Type: DB
-	 * Desc: user email check if exist return false else true
-	 *
-	 * @param $email
-	 * @return bool
-	 */
-	public function userExist( $email ){
-		$result = $this->user->getUserByEmail($email);
-		return empty($result);
 	}
 
 

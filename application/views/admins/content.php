@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('admins/include/header');
 ?>
-
-
     <!-- Main -->
     <div class="container-fluid">
         <div class="row">

@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-						<i class="glyphicon glyphicon-user"></i> Sheril I Will CHange it <span class="caret hidden"></span>
+						<i class="glyphicon glyphicon-user"></i> <?= $this->user->cUser('name'); ?> <span class="caret hidden"></span>
 					</a>
 					<ul id="g-account-menu" class="dropdown-menu hidden" role="menu">
 						<li><a href="#">My Profile</a></li>
@@ -51,3 +51,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- /container -->
 </div>
 <!-- /Header -->
+
+
+<!-- Main -->
+<div class="container-fluid">
+	<div class="row">
+
+		<?php $this->load->view('admins/include/menu'); ?>
+
+		<!-- /col-3 -->
+		<div class="col-sm-9">
+
+			<a href="#"><strong><i class="glyphicon glyphicon-<?= $currentPageIcon; ?>"></i> <?= $currentPageName; ?></strong></a>
+			<hr>
+
+			<div class="row">

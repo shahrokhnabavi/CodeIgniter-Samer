@@ -54,6 +54,11 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Admin Panel by Shahrokh
 $route['admin']           = 'admins/login';
-// $route['admin/(:any)']    = 'admins/pages/$1';
+
 
 $route['admin/content']    = 'post';
+
+
+
+$route['admin/user([0-9]*|[0-9]*/[0-9]*)']  = 'admins/users/$1/$2';
+$route['admin/delete-user/([0-9]*)']  = 'admins/delete/$1';
