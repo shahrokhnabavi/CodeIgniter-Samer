@@ -5,6 +5,7 @@
  * Time: 11:33 AM
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+$this->load->view('admins/include/header');
 ?>
 
                     <div class="col-md-6">
@@ -25,3 +26,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>
+
+<?php
+$this->load->view('admins/include/footer');

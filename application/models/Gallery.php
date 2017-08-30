@@ -6,9 +6,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Model
+class Gallery extends CI_Model
 {
-    public $tbl = 'admins';
+    public $tbl = 'gallery';
 
     public function __construct(){
         parent::__construct();
@@ -113,25 +113,5 @@ class User extends CI_Model
         } else {
             return $record[$field];
         }
-    }
-
-
-    /**
-     * Type: Action
-     * Desc: Check user if logged in or not
-     *
-     * @param null $url
-     * @param bool $isLoggedin
-     * @return mixed
-     */
-    public function loggedIn( $url = null , $isLoggedin = true ){
-        if( $url === null )
-            return $this->session->userdata('cUser');
-
-        if( $isLoggedin && $this->session->userdata('cUser') )
-            redirect( $url );
-
-        if( !$isLoggedin && !$this->session->userdata('cUser') )
-            redirect( $url );
     }
 }
