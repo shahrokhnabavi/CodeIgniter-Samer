@@ -21,27 +21,27 @@ class Galleries extends CI_Controller
 
 
 
-if( $this->input->post() ) {
-	$this->load->helper('string');
-	$rand = random_string('alnum', 8);
-
-	$config['upload_path'] = '../uploads/';
-	$config['allowed_types'] = 'gif|jpg|png|jpeg';
-	$config['file_name'] = '12-' . $rand;
-	$config['file_ext_tolower'] = true;
-
-	$this->load->library('upload', $config);
-
-	if (!$this->upload->do_upload('myFile')) {
-		$error = array('error' => $this->upload->display_errors());
-		var_dump($error);
-		die();
-	} else {
-		$data = array('upload_data' => $this->upload->data());
-		var_dump($data);
-			die();
-	}
-}
+//if( $this->input->post() ) {
+//	$this->load->helper('string');
+//	$rand = random_string('alnum', 8);
+//
+//	$config['upload_path'] = '../uploads/';
+//	$config['allowed_types'] = 'gif|jpg|png|jpeg';
+//	$config['file_name'] = '12-' . $rand;
+//	$config['file_ext_tolower'] = true;
+//
+//	$this->load->library('upload', $config);
+//
+//	if (!$this->upload->do_upload('myFile')) {
+//		$error = array('error' => $this->upload->display_errors());
+//		var_dump($error);
+//		die();
+//	} else {
+//		$data = array('upload_data' => $this->upload->data());
+//		var_dump($data);
+//			die();
+//	}
+//}
 
 
 
