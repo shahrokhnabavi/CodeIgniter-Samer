@@ -28,11 +28,11 @@ class Subscribe extends CI_Controller{
 				);
 				$this->load->model('subscribes');
 				$email = $this->subscribes->add_subscriber( $values );
+				$this->session->set_flashdata('successMsg', 'Thanks for your subscription.');
 				redirect('/');
-				$this->session->set_flashdata('successMsg', 'Thanks for your subscription.');						
-					
 				}
 	}
+	
 		// SHOW SUBSCRIBERS
 	public function show_members()
 	{
@@ -41,7 +41,7 @@ class Subscribe extends CI_Controller{
 				$data = array(
 				'all_emails' => $result,
 				);
-				$this->load->view('???????', $data);
+				$this->load->view('show_subscribers', $data);
 
 	}
 
