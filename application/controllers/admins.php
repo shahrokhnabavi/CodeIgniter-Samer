@@ -39,7 +39,7 @@ class Admins extends CI_Controller
 			if( $result )
 			{
 				$passwd = $this->password( $this->input->post('passwd') );
-				
+
 				if( $passwd === $result['password'] )
 				{
 					$this->session->set_userdata('cUser', $result['id']);
