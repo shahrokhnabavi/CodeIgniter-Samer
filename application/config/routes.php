@@ -11,7 +11,7 @@ $route['admin/dashboard'] = 'site/admin';
 $route['admin/logout']    = 'admins/logout';
 
 
-$route['admin/user([0-9]*|[0-9]*/[0-9]*)']  = 'admins/users/$1/$2';
+$route['admin/user([0-9]*|[0-9]*/[0-9]*)']  = 'admins/form/$1/$2';
 $route['admin/delete-user/([0-9]*)']  = 'admins/delete/$1';
 
 $route['admin/gallery([0-9]*|[0-9]*/[0-9]*)']  = 'galleries/form/$1/$2';
