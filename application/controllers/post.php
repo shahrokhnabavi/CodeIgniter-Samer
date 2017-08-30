@@ -149,11 +149,14 @@ class Post extends CI_Controller {
 		$this->load->model('Content_model');
 		$content = $this->Content_model->find_content($id );
 
-		// echo '<pre>';
-		// var_dump($content);
-		// die();
 
-		$this->load->view('admins/edit_content', ['content' => $content]);
+		$data = array(
+			'currentPageName'  => 'Content',
+			'currentPageIcon'  => 'tasks',
+			'content' => $content
+		);
+
+		$this->load->view('admins/edit_content', $data);
 
 		
 	}
