@@ -6,7 +6,6 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('admins/include/header');
-$rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
 ?>
 
                     <div class="col-md-6">

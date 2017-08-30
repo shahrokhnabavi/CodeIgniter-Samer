@@ -10,6 +10,9 @@ class Site extends CI_Controller
 {
 	public function admin()
 	{
+		$this->user->loggedIn('admin/', false);
+
+
 		$data = array(
 			'currentPageName'  => 'Dashboard',
 			'currentPageIcon'  => 'dashboard',

@@ -114,4 +114,24 @@ class User extends CI_Model
             return $record[$field];
         }
     }
+
+
+    /**
+     * Type: Action
+     * Desc: Check user if logged in or not
+     *
+     * @param null $url
+     * @param bool $isLoggedin
+     * @return mixed
+     */
+    public function loggedIn( $url = null , $isLoggedin = true ){
+        if( $url === null )
+            return $this->session->userdata('cUser');
+
+        if( $isLoggedin && $this->session->userdata('cUser') )
+            redirect( $url );
+
+        if( !$isLoggedin && !$this->session->userdata('cUser') )
+            redirect( $url );
+    }
 }

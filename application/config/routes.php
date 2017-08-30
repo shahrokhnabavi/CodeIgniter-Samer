@@ -8,6 +8,7 @@ $route['translate_uri_dashes'] = FALSE;
 // Admin Panel by Shahrokh
 $route['admin']           = 'admins/login';
 $route['admin/dashboard'] = 'site/admin';
+$route['admin/logout']    = 'admins/logout';
 
 
 $route['admin/user([0-9]*|[0-9]*/[0-9]*)']  = 'admins/form/$1/$2';
