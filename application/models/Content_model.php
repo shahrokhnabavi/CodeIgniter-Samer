@@ -3,6 +3,8 @@
 
 
 class Content_model extends CI_Model {
+
+    public $tbl = 'content';
  
     public function add_content($new_content)
     {
@@ -19,10 +21,19 @@ class Content_model extends CI_Model {
         public function list_of_post()
     {
        
-        $sql = "SELECT title, content, description FROM content";
+        $sql = "SELECT id, title, content, description FROM content";
                  
         return $this->db->query( $sql)->result_array();
 
+    }
+
+
+        public function delete( $id )
+    {
+        $data = array(
+            'id' => $id
+        );
+        $this->db->delete($this->tbl, $data);
     }
 
 }

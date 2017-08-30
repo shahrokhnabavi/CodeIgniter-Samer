@@ -62,3 +62,6 @@ $route['admin/content']    = 'post';
 
 $route['admin/user([0-9]*|[0-9]*/[0-9]*)']  = 'admins/users/$1/$2';
 $route['admin/delete-user/([0-9]*)']  = 'admins/delete/$1';
+
+
+$route['post/delete-user/([0-9]*)']  = 'post/delete/$1';
