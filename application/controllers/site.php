@@ -12,7 +12,7 @@ class Site extends CI_Controller
 		$this->load->view('visitor/index');
 	}
 
-	public function admin()
+	public function dashboard()
 	{
 		$this->user->loggedIn('admin/', false);
 
@@ -23,5 +23,18 @@ class Site extends CI_Controller
 		);
 
 		$this->load->view('admins/dashboard', $data);
+	}
+
+	public function setting()
+	{
+		$this->user->loggedIn('admin/', false);
+
+
+		$data = array(
+			'currentPageName'  => 'Settings',
+			'currentPageIcon'  => 'cog',
+		);
+
+		$this->load->view('admins/setting', $data);
 	}
 }

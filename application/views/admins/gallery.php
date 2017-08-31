@@ -15,6 +15,9 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
             <?php
             if( $msg = validation_errors() )
                 echo '<div class="alert alert-danger">' . $msg . '</div>';
+            if($msg = $this->session->flashdata('error') )
+                foreach( $msg as $err )
+                    echo '<div class="alert alert-danger">' . $err . '</div>';
             if($msg = $this->session->flashdata('reg-success') )
                 echo '<div class="alert alert-success">' . $msg . '</div>';
             ?>
@@ -50,7 +53,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -60,13 +63,13 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                     <tr>
                         <th scope="row"><?= ++$rowNumber; ?></th>
                         <td><?= $record['name']; ?></td>
-                        <td><?= $record['email']; ?></td>
+                        <td><img src="<?= base_url('thumb-gallery/' . $record['id']); ?>" /></td>
                         <td>
                             <?php if( $record['id'] > 1 ) { ?>
-                            <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/user/' . $record['id']); ?>">
+                            <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/gallery/' . $record['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
                             </a>
-                            <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-user/' . $record['id']); ?>">
+                            <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-gallery/' . $record['id']); ?>">
                                 <i class="glyphicon glyphicon-trash"></i>Delete
                             </a>
                             <?php } ?>
@@ -75,7 +78,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                 <?php } ?>
                 </tbody>
             </table>
-            <?php $this->load->view('admins/include/paginating'); ?>
+            <?php $this->load->view('admins/include/paginating', ['page' => 'admin/gallery']); ?>
         </div>
     </div>
 
