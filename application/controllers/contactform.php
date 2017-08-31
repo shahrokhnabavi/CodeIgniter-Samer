@@ -29,10 +29,10 @@ class Contactfrom extends CI_Controller{
             $from_email = $this->input->post('email');
             $message = $this->input->post('message');
 
-            //set to_email id to which you want to receive mails
+            //Receive it in this email
             $to_email = 'sh.soheytizadeh@gmail.com';
 
-            //configure email settings
+            //configure email settings I Chose GMAIL
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'ssl://smtp.gmail.com';
             $config['smtp_port'] = '465';
