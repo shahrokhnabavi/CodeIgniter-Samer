@@ -27,6 +27,7 @@ $route['admin/content_update']    = 'post/update';
 
 
 //front end routes
+$route['default_controller'] = 'front_end';
 $route['home'] = 'front_end';
 $route['gallery'] = 'front_end/gallery';
 $route['about'] = 'front_end/about';
