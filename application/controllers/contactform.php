@@ -20,7 +20,7 @@ class Contactform extends CI_Controller{
         if ($this->form_validation->run() == FALSE)
         {
             //validation fails
-            $this->load->view('visitor/contact');
+            $this->load->view('users/contact');
         }
         else
         {
@@ -30,7 +30,7 @@ class Contactform extends CI_Controller{
             $message = $this->input->post('message');
 
             //Receive it in this email
-            $to_email = 'sh.soheytizadeh@gmail.com';
+            $to_email = 'shahrokhnabavi@gmail.com';
 
             //configure email settings I Chose GMAIL
             $config['protocol'] = 'smtp';
