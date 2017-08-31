@@ -28,6 +28,7 @@ $route['admin/content_update']    = 'post/update';
 
 //front end routes
 $route['home'] = 'front_end';
+$route['gallery'] = 'front_end/gallery';
 
 
 

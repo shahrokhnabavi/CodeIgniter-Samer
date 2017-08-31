@@ -34,10 +34,10 @@
             <li class="nav-item active">
               <a class="nav-link" href="index.html">Home
                 <span class="sr-only">(current)</span>
-              </a>
+              </a>  
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="gallery.html">Gallery</a>
+              <a class="nav-link" href="<?php echo base_url('gallery');?>">Gallery</a>
             </li>
             <li class="nav-item">   
             <a class="logo" href="#"><img id="logo-navbar-middle" src="<?php echo base_url('assets/img/logo-thing.png');?>" width="100" alt="Logo Thing main logo"></a>
@@ -59,6 +59,8 @@
        <div class ="section">
           <div class="header-unit">
 <div id="video-container">
+<h3 class="title_vid"> Samer Abdolnour </h3><br>
+<p class="title_vid2"> This place some text can take place.</p>
 <video autoplay loop muted class="fillWidth">
 <source src="<?php echo base_url('assets/img/vid.mp4');?>" type="video/mp4">
      <source src="<?php echo base_url('assets/img/vid.webm');?>" type="video/webm">
@@ -80,18 +82,6 @@
         Here some info text...<br>
         <hr class="style"><br><br>
       </div>
-      <div class="container-fluid">
-        <div class="col-sm-2 my-12">
-           <div class="card-body1">
-              <p class="card-title">Subscribe</p>
-              <form action="" method="POST">
-              <input type="hidden" name="subscribe" value="subscribe">
-              <input class="subfield" type="text" name="sub" placeholder="Enter Your E-Email">
-              <input class="btn btn-primary btn-sm" type="submit" value="Register">
-              </form>
-            </div>
-          </div>
-          </div>
 
      </div>
     <!-- /.row -->
@@ -113,6 +103,19 @@
       </div> <!-- CONTAINER -->
 
       <!-- /.row -->
+
+      <div class="container-fluid">
+       <div class="col-sm-12 my-12">
+          <div class="card-body1 text-center">
+             <p class="card-title">Subscribe</p>
+             <form action="" method="POST">
+             <input type="hidden" name="subscribe" value="subscribe">
+             <input class="subfield" type="text" name="sub" placeholder="Enter Your E-Email">
+             <input class="btn btn-primary btn-sm" type="submit" value="Register">
+             </form>
+           </div>
+         </div>
+         </div>
     <!-- Footer -->
     <div class="footer">
     	<div class="container">

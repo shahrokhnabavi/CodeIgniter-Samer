@@ -10,4 +10,9 @@ class Front_end extends CI_Controller {
 		$this->load->view('users/home');
 	}
 
+	public function gallery()
+	{
+		$this->load->view('users/gallery');
+	}
+
 }
