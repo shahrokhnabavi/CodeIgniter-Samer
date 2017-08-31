@@ -51,8 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['translate_uri_dashes'] = FALSE;
 
-$route['default_controller'] = 'subscribe';
-
 //subscription
 $route['subsription'] = 'subscribe/add_member';
 // Admin Panel by Shahrokh
