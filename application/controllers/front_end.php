@@ -23,4 +23,10 @@ class Front_end extends CI_Controller {
 		
 		$this->load->view('users/about');
 	}
+
+		public function contact()
+	{
+		
+		$this->load->view('users/contact');
+	}
 }
