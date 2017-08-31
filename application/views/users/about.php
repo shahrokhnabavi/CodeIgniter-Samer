@@ -8,11 +8,34 @@ $this->load->view('users/include/header')
       <div class="row">
         <div class="col-lg-12">
     <br><br><br><br>
-    <h3> ABOUT ME </h3>
+    <h3> EVENTS </h3>
     <br><br>
-    <p> Some text or photo comes here soon... Some text or photo comes here soon....<br>
-    Some text or photo comes here soon.... Some text or photo comes here soon....<br>
-    Some text or photo comes here soon....Some text or photo comes here soon....</p>
+
+    <?php foreach ($recent_content as $value ){?>
+      <div class="row">
+        <div class="col-sm-12 my-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <div class="card-footer">
+                  <?php echo $value["title"]; ?>
+                </div>
+              </h4>
+              <p class="card-text">
+                <?php
+                  echo $value["content"];  
+                ?>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <?php
+      }
+      ?>
+      </div>
 
     </div>
       </div>

@@ -23,7 +23,7 @@ $rowNumber = 0;
             <div class="col-md-12">
                 <form class="form-horizontal" action="<?php echo base_url('admin/content');?>" method="post">
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <label for="title">Event</label>
                         <input type="text" class="form-control" id="title" name="title"
                                value="<?=set_value('title');?>">
                     </div>
@@ -33,7 +33,7 @@ $rowNumber = 0;
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Content</label>
+                        <label for="name">More about</label>
                         <textarea type="text" class="form-control" id="name" name="content"><?=set_value('content');?></textarea>
                     </div>
 

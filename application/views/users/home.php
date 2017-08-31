@@ -35,30 +35,35 @@ $this->load->view('users/include/header')
 
      </div>
     <!-- /.row -->
-      
 
+    <div>
+      <h1>Top Events</h1>
+    </div>
+    <?php foreach ($recent_content as $value ){?>
       <div class="row">
         <div class="col-sm-12 my-12">
           <div class="card">
             <div class="card-body">
-              <?php foreach ($recent_content as $value ){?>
               <h4 class="card-title"><?php echo $value["title"]; ?></h4>
               <p class="card-text">
                 <?php
-                  echo $value["content"]; 
-                  } 
+                  echo $value["content"];  
                 ?>
               </p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary btn-sm">Find Out More!</a>
+              <a href="<?php echo base_url('about');?>" class="btn btn-primary btn-sm">Find Out More!</a>
             </div>
           </div>
         </div>
       </div>
+      <br>
+      <?php
+      }
+      ?>
       </div> <!-- CONTAINER -->
 
-      <!-- /.row -->   
+   
 
 
       <p><?php

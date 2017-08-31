@@ -41,8 +41,10 @@ class Content_model extends CI_Model {
     }
     public function content_home()
     {
-        $sql = "SELECT * FROM content ORDER BY id desc LIMIT 3;";
+        $sql = "SELECT * FROM content ORDER BY id desc LIMIT 4;";
         return $this->db->query( $sql)->result_array();
     }
+
+
 
 }

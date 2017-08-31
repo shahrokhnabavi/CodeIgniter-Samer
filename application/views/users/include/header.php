@@ -43,7 +43,7 @@
             <a class="logo" href="#"><img id="logo-navbar-middle" src="<?php echo base_url('assets/img/logo-thing.png');?>" width="100" alt="Logo Thing main logo"></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('about');?>">About</a>
+              <a class="nav-link" href="<?php echo base_url('about');?>">Events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('contact');?>">Contact</a>

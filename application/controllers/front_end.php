@@ -20,8 +20,15 @@ class Front_end extends CI_Controller {
 
 	public function about()
 	{
-		
-		$this->load->view('users/about');
+		// die('I am in about controller');
+		$this->load->model('Content_model');
+		$content = $this->Content_model->list_of_post();
+		$content_home = array('recent_content' => $content);
+
+		// var_dump($content_home);
+		// die();
+
+		$this->load->view('users/about' , $content_home);
 	}
 
 		public function contact()
