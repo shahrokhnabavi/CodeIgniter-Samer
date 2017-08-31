@@ -12,9 +12,9 @@ class Contactform extends CI_Controller{
 	    function index()
 	    {
         //set validation rules
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|xss_clean|callback_alpha_space_only');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|callback_alpha_space_only');
         $this->form_validation->set_rules('email', 'Emaid ID', 'trim|required|valid_email');
-        $this->form_validation->set_rules('message', 'Message', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('message', 'Message', 'trim|required');
 
         //run validation on form input
         if ($this->form_validation->run() == FALSE)
