@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class SiteSetting extends CI_Model
 {
     public $tbl       = 'settings';
-    public $validKeys = array('site_name', 'welcome_msg','site_icon','site_logo','meta_key','meta_desc');
+    public $validKeys = array('site_name', 'welcome_msg','site_icon','site_logo','meta_key','meta_desc','site_subtitle');
 
     public function __construct(){
         parent::__construct();

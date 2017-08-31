@@ -35,6 +35,11 @@ $this->load->view('admins/include/header');
                                    value="<?= $this->sitesetting->getValue('site_name'); ?>">
                         </div>
                         <div class="form-group">
+                            <label for="site_subtitle">Site Subtitle</label>
+                            <input type="text" class="form-control" id="site_subtitle" name="site_subtitle"
+                                   value="<?= $this->sitesetting->getValue('site_subtitle'); ?>">
+                        </div>
+                        <div class="form-group">
                             <label for="welcome_msg">Welcome Message</label>
                             <textarea class="form-control" id="welcome_msg" name="welcome_msg"><?= $this->sitesetting->getValue('welcome_msg'); ?></textarea>
                         </div>
