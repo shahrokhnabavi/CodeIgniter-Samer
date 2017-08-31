@@ -20,7 +20,14 @@ class Subscribe extends CI_Controller{
 		if ($this->form_validation->run() === FALSE)
 			{
 				$this->session->set_flashdata('errorMssg', 'Please enter a valid email.');
-				$this->load->view('users/home');
+		
+				$this->load->model('Content_model');
+				$content = $this->Content_model->content_home();
+				$content_home = array('recent_content' => $content);
+
+				$this->load->view('users/home',$content_home);
+
+
 			} 
 		else 
 			{
@@ -30,6 +37,7 @@ class Subscribe extends CI_Controller{
 				$this->load->model('subscribes');
 				$email = $this->subscribes->add_subscriber( $values );
 				$this->session->set_flashdata('successMsg', 'Thanks for your subscription.');
+
 				redirect('home');
 				}
 	}

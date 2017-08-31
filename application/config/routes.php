@@ -29,6 +29,7 @@ $route['admin/content_update']    = 'post/update';
 //front end routes
 $route['home'] = 'front_end';
 $route['gallery'] = 'front_end/gallery';
+$route['about'] = 'front_end/about';
 $route['subscribe'] = 'subscribe/add_member';
 
 
