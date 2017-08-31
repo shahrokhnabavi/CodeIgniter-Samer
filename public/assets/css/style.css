@@ -9,6 +9,25 @@
  padding-left: 40px;
  padding-right: 40px;
 }
+<<<<<<< .merge_file_a03476
+=======
+.title_vid{
+   color: white;
+   text-shadow: 2px 2px 3px #343a40 ;
+   margin-top: 150px;
+   margin-left: 300px;
+   font-family: "Andale Mono";
+}
+.title_vid2{
+   color: white;
+   text-shadow: 1px 1px 2px #343a40 ;
+   margin-top: -10px;
+   margin-left: 350px;
+   font-family: "Andale Mono";
+}
+
+
+>>>>>>> .merge_file_a04624
 .first_row{
 	text-align: center;
 }
@@ -47,6 +66,16 @@ hr.style:after {
     font-size: 10pt;
     font-weight: bold;
 }
+<<<<<<< .merge_file_a03476
+=======
+
+.card-body1{
+   background-color: #757777 ;
+   margin-top: 40px;
+   margin-bottom: -20px;
+}
+
+>>>>>>> .merge_file_a04624
 .card-footer{
     background-color: #757777;
 }

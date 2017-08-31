@@ -144,5 +144,50 @@ class Post extends CI_Controller {
 	}
 
 
+	public function edit( $id ){
+		$this->user->loggedIn('admin', false);
+		$this->load->model('Content_model');
+		$content = $this->Content_model->find_content($id );
+
+
+		$data = array(
+			'currentPageName'  => 'Content',
+			'currentPageIcon'  => 'tasks',
+			'content' => $content
+		);
+
+		$this->load->view('admins/edit_content', $data);
+
+		
+	}
+
+	public function update(){
+
+		
+
+		$values = array(
+            			'title' => $this->input->post('title', TRUE),
+            			'content' => $this->input->post('content', TRUE),
+            			'slug' => $this->input->post('slug', TRUE),
+            			'description' => $this->input->post('description', TRUE),
+            			'created_at' => date("Y-m-d H:i:s"),
+            			'updated_at' => date("Y-m-d H:i:s"),
+            			'admin_id' => $this->input->post('action_id', TRUE),
+
+        			);
+		$content_id = $this->input->post('content_id', TRUE);
+
+		// var_dump($values);
+		$this->load->model('Content_model');
+		$user = $this->Content_model->update_content($values, $content_id);
+
+		// die('edited in database');
+
+
+		$this->session->set_flashdata('msg-succes','Your record is edited');
+		redirect('admin/content');
+	}
+
+
 
 }
