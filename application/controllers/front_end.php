@@ -7,7 +7,10 @@ class Front_end extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('users/home');
+		$this->load->model('Content_model');
+		$content = $this->Content_model->content_home();
+		$content_home = array('recent_content' => $content);
+		$this->load->view('users/home',$content_home);
 	}
 
 	public function gallery()

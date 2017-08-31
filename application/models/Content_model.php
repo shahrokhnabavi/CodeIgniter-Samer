@@ -60,4 +60,13 @@ class Content_model extends CI_Model {
         return true;
     }
 
+
+        public function content_home()
+    {
+
+        $sql = "SELECT * FROM content ORDER BY id desc LIMIT 3;";
+                 
+        return $this->db->query( $sql)->result_array();      
+    }
+
 }

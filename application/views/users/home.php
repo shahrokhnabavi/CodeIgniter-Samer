@@ -91,8 +91,14 @@
         <div class="col-sm-12 my-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Event Title</h4>
-              <p class="card-text">Sheril work here for event posts</p>
+              <?php foreach ($recent_content as $value ){?>
+              <h4 class="card-title"><?php echo $value["title"]; ?></h4>
+              <p class="card-text">
+                <?php
+                  echo $value["content"]; 
+                  } 
+                ?>
+              </p>
             </div>
             <div class="card-footer">
               <a href="#" class="btn btn-primary btn-sm">Find Out More!</a>
@@ -102,13 +108,31 @@
       </div>
       </div> <!-- CONTAINER -->
 
-      <!-- /.row -->
+      <!-- /.row -->   
+
+
+      <p><?php
+        if( $this->input->post('sub', TRUE)) {
+        // echo validation_errors() . '</p><p>';
+          $temp = $this->session->flashdata('errorMssg');
+          if( $temp ){
+          echo $temp;
+        }
+
+        }
+
+        $temp = $this->session->flashdata('successMsg');
+        if( $temp ){
+        echo $temp;
+        }
+      ?>
+      </p>
 
       <div class="container-fluid">
        <div class="col-sm-12 my-12">
           <div class="card-body1 text-center">
              <p class="card-title">Subscribe</p>
-             <form action="" method="POST">
+             <form action="<?php echo base_url('subscribe');?>" method="POST">
              <input type="hidden" name="subscribe" value="subscribe">
              <input class="subfield" type="text" name="sub" placeholder="Enter Your E-Email">
              <input class="btn btn-primary btn-sm" type="submit" value="Register">
