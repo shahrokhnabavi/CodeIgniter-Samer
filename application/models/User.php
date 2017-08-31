@@ -38,10 +38,10 @@ class User extends CI_Model
 
 
 
-    public function add( $user, $msg = '' ){
-        $this->db->insert( $this->tbl, $user);
+    public function add( $record, $msg = '' ){
+        $this->db->insert( $this->tbl, $record);
 
-        if ( addUser === '' )
+        if ( $msg === '' )
             return $this->db->insert_id();
         else
             return $msg;
