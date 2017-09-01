@@ -6,19 +6,21 @@ $administrator_id = $this->session->userdata('cUser');
 $rowNumber = 0;
 
  ?>
-    <div class="container">
 
-        <div class="row">
-            <div class="col-md-12">
-                <?php
-                if( $msg = validation_errors() )
-                    echo '<div class="alert alert-danger">' . $msg . '</div>';
-                if($msg = $this->session->flashdata('msg-succes') )
-                    echo '<div class="alert alert-success">' . $msg . '</div>';
-                ?>
-            </div>
+<div class="col-md-12">
+
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            if( $msg = validation_errors() )
+                echo '<div class="alert alert-danger">' . $msg . '</div>';
+            if($msg = $this->session->flashdata('msg-succes') )
+                echo '<div class="alert alert-success">' . $msg . '</div>';
+            ?>
         </div>
+    </div>
 
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" action="<?php echo base_url('admin/content');?>" method="post">
@@ -28,19 +30,20 @@ $rowNumber = 0;
                                value="<?=set_value('title');?>">
                     </div>
                     <div class="form-group">
-                        <label for="name">Description</label>
-                        <textarea type="text" class="form-control" id="name" name="description"><?=set_value('description');?></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">More about</label>
+                        <label for="name">Content</label>
                         <textarea type="text" class="form-control" id="name" name="content"><?=set_value('content');?></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="name">Start Date</label>
+                        <input type="date" name="start" class="form-control">
+                        <!-- <textarea type="text" class="form-control" id="name" name="start"><?=set_value('description');?></textarea> -->
+                    </div>
 
                     <div class="form-group">
-                        <label for="name">Slug</label>
-                        <input type="text" class="form-control" id="name" name="slug"
-                               value="<?=set_value('slug');?>">
+                        <label for="name">End Date</label>
+                        <input type="date" name="end" class="form-control">
+                        <!-- <input type="text" class="form-control" id="name" name="end"
+                               value="<?=set_value('slug');?>"> -->
                     </div>
 
                     <input type="hidden" name="action_id" value="<?= $administrator_id; ?>">
@@ -61,8 +64,9 @@ $rowNumber = 0;
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Event</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -72,7 +76,8 @@ $rowNumber = 0;
                     <tr>
                         <th scope="row"><?= ++$rowNumber; ?></th>
                         <td><?= $posting['title']; ?></td>
-                        <td><?= $posting['description']; ?></td>
+                        <td><?= $posting['startdate']; ?></td>
+                        <td><?= $posting['enddate']; ?></td>
                         <td>
                             <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/edit-content/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
@@ -85,12 +90,10 @@ $rowNumber = 0;
                 <?php } ?>
                 </tbody>
             </table>
-           
         </div>
     </div>
 
-
-
+    </div>
 
 <?php
 $this->load->view('admins/include/footer');

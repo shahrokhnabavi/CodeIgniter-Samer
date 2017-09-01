@@ -23,46 +23,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<![endif]-->
 </head>
 <body>
-<!-- header -->
-<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Admin Panel</a>
+
+<div class="wrapper">
+	<!-- header -->
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" target="_blank" href="<?= base_url(''); ?>">Admin Panel</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+							<i class="glyphicon glyphicon-user"></i> <?= $this->user->cUser('name'); ?> <span class="caret hidden"></span>
+						</a>
+						<ul id="g-account-menu" class="dropdown-menu hidden" role="menu">
+							<li><a href="#">My Profile</a></li>
+						</ul>
+					</li>
+					<li><a href="<?= base_url('admin/logout'); ?>"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-						<i class="glyphicon glyphicon-user"></i> <?= $this->user->cUser('name'); ?> <span class="caret hidden"></span>
-					</a>
-					<ul id="g-account-menu" class="dropdown-menu hidden" role="menu">
-						<li><a href="#">My Profile</a></li>
-					</ul>
-				</li>
-				<li><a href="<?= base_url('admin/logout'); ?>"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
-			</ul>
-		</div>
+		<!-- /container -->
 	</div>
-	<!-- /container -->
-</div>
-<!-- /Header -->
+	<!-- /Header -->
 
 
-<!-- Main -->
-<div class="container-fluid">
-	<div class="row">
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row workarea">
 
-		<?php $this->load->view('admins/include/menu'); ?>
+			<?php $this->load->view('admins/include/menu'); ?>
 
-		<!-- /col-3 -->
-		<div class="col-sm-9">
+			<!-- /col-3 -->
+			<div class="col-sm-9">
 
-			<a href="#"><strong><i class="glyphicon glyphicon-<?= $currentPageIcon; ?>"></i> <?= $currentPageName; ?></strong></a>
-			<hr>
+				<a href="#"><strong><i class="glyphicon glyphicon-<?= $currentPageIcon; ?>"></i> <?= $currentPageName; ?></strong></a>
+				<hr>
 
-			<div class="row">
+				<div class="row">

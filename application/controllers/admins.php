@@ -55,15 +55,36 @@ class Admins extends CI_Controller
 		$this->load->view('admins/login');
 	}
 
-	public function form(  $page, $id  ){
+
+	public function checkEmail( $value, $id )
+	{
+		$data = array(
+			'email' => $value,
+			'id <>'	=> $id
+		);
+		$result = $this->user->getByField( $data );
+
+		if ($result)
+		{
+			$this->form_validation->set_message('checkEmail', 'This {field} is already exist.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+
+	public function form(  $page, $id = 0 ){
 
 		$this->user->loggedIn('admin', false);
+		$id = (int) $id;
 
 		$validation = array(
 			array(
 				'field' => 'email',
 				'label' => 'E-Mail Address',
-				'rules' => 'trim|required|valid_email|is_unique[admins.email]'
+				'rules' => "trim|required|valid_email|callback_checkEmail[{$id}]"
 			),
 			array(
 				'field' => 'name',
@@ -72,6 +93,7 @@ class Admins extends CI_Controller
 			)
 		);
 		if( !$id ){
+			$validation[0]['rules'] = 'trim|required|valid_email|is_unique[admins.email]';
 			$validation[] = array(
 				'field' => 'passwd',
 				'label' => 'Password',
@@ -111,9 +133,6 @@ class Admins extends CI_Controller
 			redirect('admin/user');
 		}
 
-
-
-		$id = (int) $id;
 		$pg = array(
 			'cPageNumbr' => (int) $page,
 			'count'		 => $this->user->count(),

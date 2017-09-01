@@ -6,13 +6,13 @@ class Content_model extends CI_Model {
     {
 
         $query = "INSERT INTO content 
-        		(title, content, slug, description, created_at, updated_at, admin_id)	VALUES (?,?,?,?,?,?,?)";
+        		(title, content, startdate, enddate, created_at, updated_at, admin_id)	VALUES (?,?,?,?,?,?,?)";
         return $this->db->query($query,$new_content);
     }
     public function list_of_post()
     {
 
-        $sql = "SELECT id, title, content, description FROM content";
+        $sql = "SELECT id, title, content, startdate, enddate FROM content ORDER BY id DESC";
 
         return $this->db->query( $sql)->result_array();
     }
@@ -25,15 +25,16 @@ class Content_model extends CI_Model {
     }
     public function find_content($id)
     {
-        $query = $this->db->select(['id', 'title', 'content', 'slug', 'description'])
+        $query = $this->db->select(['id', 'title', 'content', 'startdate', 'enddate'])
             ->where('id',$id)
             ->get('content');
         return $query->row();
     }
     public function update_content($data_edited, $content_id)
     {
-        // var_dump($data_edited);
-        var_dump($content_id);
+
+        // var_dump($content_id);
+        // die();
         $this->db->where('id', $content_id);
         $this->db->update('content',$data_edited );
 
@@ -41,10 +42,8 @@ class Content_model extends CI_Model {
     }
     public function content_home()
     {
-        $sql = "SELECT * FROM content ORDER BY id desc LIMIT 4;";
+        $sql = "SELECT * FROM content ORDER BY id desc LIMIT 3;";
+
         return $this->db->query( $sql)->result_array();
     }
-
-
-
 }

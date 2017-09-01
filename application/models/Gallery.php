@@ -17,18 +17,9 @@ class Gallery extends CI_Model
 
 
 
-    public function getUserByEmail( $email ){
-        $data = array(
-            'email' => $email
-        );
-        return $this->db->get_where($this->tbl, $data)->row_array();
-    }
-
-
-
-    public function getUserById( $id ){
+    public function getRecordById( $id ){
         if( !is_numeric($id) )
-            show_error('[User]: The type of parameter is not valid. Error is on line ' . __LINE__ );
+            show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
 
         $data = array(
             'id' => $id
@@ -41,7 +32,7 @@ class Gallery extends CI_Model
     public function add( $user, $msg = '' ){
         $this->db->insert( $this->tbl, $user);
 
-        if ( addUser === '' )
+        if ( $msg === '' )
             return $this->db->insert_id();
         else
             return $msg;
@@ -80,8 +71,9 @@ class Gallery extends CI_Model
      *
      * @return mixed
      */
-    public function getAll($limit = 0, $offset = 0){
+    public function getAll( $limit = 0, $offset = 0, $order = array('id', 'desc') ){
         $offset = $limit * $offset;
+        $this->db->order_by($order[0], $order[1]);
         return $this->db->get($this->tbl, $limit, $offset)->result_array();
     }
 
@@ -102,16 +94,5 @@ class Gallery extends CI_Model
             'id' => $id
         );
         $this->db->delete($this->tbl, $data);
-    }
-
-    public function cUser( $field = '*' ){
-        $id = $this->session->userdata('cUser');
-        $record = $this->getUserById( $id );
-
-        if( $field === '*' ) {
-            return $record;
-        } else {
-            return $record[$field];
-        }
     }
 }

@@ -9,12 +9,29 @@ i {
 .nav > li > a {
   color:#787878;
 }
-  
+body,html{
+  height: 100% !important;
+}
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
+}
+
+.row.workarea{
+  padding-bottom: 60px;
+}
+
 footer {
   margin-top:20px;
   padding-top:20px;
   padding-bottom:20px;
   background-color:#efefef;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
 }
 
 /* count indicator near icons */

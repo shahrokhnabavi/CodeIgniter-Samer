@@ -38,10 +38,10 @@ class User extends CI_Model
 
 
 
-    public function add( $user, $msg = '' ){
-        $this->db->insert( $this->tbl, $user);
+    public function add( $record, $msg = '' ){
+        $this->db->insert( $this->tbl, $record);
 
-        if ( addUser === '' )
+        if ( $msg === '' )
             return $this->db->insert_id();
         else
             return $msg;
@@ -67,10 +67,14 @@ class User extends CI_Model
      * @param $value
      * @return mixed
      */
-    public function getByField( $field, $value ){
-        $data = array(
-            $field => $value
-        );
+    public function getByField( $field, $value = '' ){
+        if ( is_array($field) )
+            $data = $field;
+        else
+            $data = array(
+                $field => $value
+            );
+
         return $this->db->get_where($this->tbl, $data)->row_array();
     }
 
@@ -80,8 +84,9 @@ class User extends CI_Model
      *
      * @return mixed
      */
-    public function getAll($limit = 0, $offset = 0){
+    public function getAll( $limit = 0, $offset = 0, $order = array('id', 'desc') ){
         $offset = $limit * $offset;
+        $this->db->order_by($order[0], $order[1]);
         return $this->db->get($this->tbl, $limit, $offset)->result_array();
     }
 
