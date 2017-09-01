@@ -1,0 +1,25 @@
+.weclome-msg{
+  margin-top:10px;
+}
+
+.newsletter{
+  background-color: #eaeaea;
+  padding: 15px;
+  font-size: 14px;
+}
+
+.newsletter .panel-heading h3{
+  font-size: 20px;
+}
+
+.newsletter hr{
+  margin-bottom: 10px;
+}
+
+.newsletter input[type=text]{
+  margin-right: 10px;
+}
+
+.news{
+
+}
