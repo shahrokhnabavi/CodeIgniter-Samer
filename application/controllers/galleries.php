@@ -24,7 +24,7 @@ class Galleries extends CI_Controller
 		if( !$record )
 			show_error('[' . __CLASS__ . ']: This record does not exist. Error is on line ' . __LINE__ );
 
-		$files = glob(realpath(FCPATH . '../uploads') . '/' . $id . '-' . $record['file_name'] . '_thumb*');
+		$files = glob(realpath(FCPATH . 'assets/uploads') . '/' . $id . '-' . $record['file_name'] . '_thumb*');
 		if(file_exists($files[0])){
 			$filename = basename($files[0]);
 			$file_extension = strtolower(substr(strrchr($filename,"."),1));
@@ -75,7 +75,7 @@ class Galleries extends CI_Controller
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = '../uploads/';
+			$config['upload_path'] = '../public/assets/uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['file_name'] = 'temp' . $sqlData['file_name'];
 			$config['file_ext_tolower'] = true;
