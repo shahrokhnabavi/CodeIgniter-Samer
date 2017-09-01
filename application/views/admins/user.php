@@ -21,7 +21,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" action="<?= base_url('admin/user' . (isset($update['id']) ? '/' . $update['id'] : '') ); ?>" method="post">

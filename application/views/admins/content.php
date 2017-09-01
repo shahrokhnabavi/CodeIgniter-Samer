@@ -7,19 +7,20 @@ $rowNumber = 0;
 
  ?>
 
-    <div class="container">
+<div class="col-md-12">
 
-        <div class="row">
-            <div class="col-md-12">
-                <?php
-                if( $msg = validation_errors() )
-                    echo '<div class="alert alert-danger">' . $msg . '</div>';
-                if($msg = $this->session->flashdata('msg-succes') )
-                    echo '<div class="alert alert-success">' . $msg . '</div>';
-                ?>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            if( $msg = validation_errors() )
+                echo '<div class="alert alert-danger">' . $msg . '</div>';
+            if($msg = $this->session->flashdata('msg-succes') )
+                echo '<div class="alert alert-success">' . $msg . '</div>';
+            ?>
         </div>
+    </div>
 
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" action="<?php echo base_url('admin/content');?>" method="post">
@@ -87,6 +88,8 @@ $rowNumber = 0;
                 </tbody>
             </table>
         </div>
+    </div>
+
     </div>
 
 <?php

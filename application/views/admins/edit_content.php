@@ -3,16 +3,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('admins/include/header');
 $content_id = $content->id;
 
-if($this->input->post('action', true) === 'add')
-{
-    echo validation_errors();
-}
 $administrator_id = $this->session->userdata('cUser');
-echo $this->session->flashdata('msg-succes');
 ?>
 
+<div class="col-md-12">
 
-    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            if( $msg = validation_errors() )
+                echo '<div class="alert alert-danger">' . $msg . '</div>';
+            ?>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" action="<?php echo base_url('admin/content_update');?>" method="post">
@@ -49,5 +55,6 @@ echo $this->session->flashdata('msg-succes');
         </div>
     </div>
 
+</div>
 <?php
 $this->load->view('admins/include/footer');

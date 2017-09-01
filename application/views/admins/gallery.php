@@ -24,7 +24,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" enctype="multipart/form-data"  method="post"
