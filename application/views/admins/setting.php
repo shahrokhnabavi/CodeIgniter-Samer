@@ -44,6 +44,14 @@ $this->load->view('admins/include/header');
                             <textarea class="form-control" id="welcome_msg" name="welcome_msg"><?= $this->sitesetting->getValue('welcome_msg'); ?></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="contact_email">Contact Email</label>
+                            <input type="text" class="form-control" id="contact_email" name="contact_email"
+                                   value="<?= $this->sitesetting->getValue('contact_email'); ?>">
+                            <p class="help-block">
+                                Here you can define an email address which you want send an email if user submit contact form
+                            </p>
+                        </div>
+                        <div class="form-group">
                             <label for="icon">Site Icon</label>
                             <input type="file" name="icon" id="icon" />
                             <p class="help-block"><?= $this->sitesetting->getValue('site_icon'); ?></p>
@@ -57,10 +65,12 @@ $this->load->view('admins/include/header');
                             <label for="meta_key">Keywords</label>
                             <input type="text" class="form-control" id="meta_key" name="meta_key"
                                    value="<?= $this->sitesetting->getValue('meta_key'); ?>">
+                            <p class="help-block">This is a list of keywords for Google Search Engine</p>
                         </div>
                         <div class="form-group">
                             <label for="meta_desc">Description</label>
                             <textarea class="form-control" id="meta_desc" name="meta_desc"><?= $this->sitesetting->getValue('meta_desc'); ?></textarea>
+                            <p class="help-block">This is a short description about your website for Google Search Engine</p>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update Setting</button>

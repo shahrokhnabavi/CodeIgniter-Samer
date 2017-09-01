@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Admin Panel</a>
+			<a class="navbar-brand" target="_blank" href="<?= base_url(''); ?>">Admin Panel</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">

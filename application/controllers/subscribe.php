@@ -35,7 +35,7 @@ class Subscribe extends CI_Controller{
 	{
 		$sub = $this->input->post('sub', TRUE);
 		//Validation Statement.
-		$this->form_validation->set_rules('sub', 'E-Mail', 'trim|required|valid_email|is_unique[subscription.email]');
+		$this->form_validation->set_rules('sub', 'E-Mail', 'trim|required|valid_email|is_unique[subscription.email]|xss_clean');
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('index');
