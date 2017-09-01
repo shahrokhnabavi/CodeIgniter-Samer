@@ -25,7 +25,7 @@ $this->load->view('admins/include/header');
             </div>
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <form class="form-horizontal" action="<?= base_url('admin/setting'); ?>" method="post" enctype="multipart/form-data">

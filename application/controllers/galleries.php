@@ -43,6 +43,35 @@ class Galleries extends CI_Controller
 		die();
 	}
 
+	public function resizeImage($dir, $ext, $name, $w, $h){
+		$this->image_lib->clear();
+		$info = getimagesize($dir . $ext);
+		$config['source_image']   = $dir . $ext;
+		$config['new_image']      = $dir . '_' . $name . $ext;
+		$config['maintain_ratio'] = true;
+		$config['create_thumb']   = false;
+		if($info[0]/$info[1] > $w / $h)
+			$config['height'] = $h;
+		else
+			$config['width']  = $w;
+		$this->image_lib->initialize($config);
+		$this->image_lib->resize();
+
+		$this->image_lib->clear();
+		$info = getimagesize($dir . '_' . $name . $ext);
+		$config['source_image']   = $dir . '_' . $name . $ext;
+		$config['create_thumb']   = false;
+		$config['maintain_ratio'] = false;
+		$config['width']          = $w;
+		$config['height']         = $h;
+		if($info[0]>$info[1])
+			$config['x_axis'] = floor(($info[0] - $w)/2);
+		else
+			$config['y_axis'] = floor(($info[1] - $h)/2);
+		$this->image_lib->initialize($config);
+		$this->image_lib->crop();
+	}
+
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
@@ -66,33 +95,8 @@ class Galleries extends CI_Controller
 
 			$this->load->library('image_lib');
 
-			$info = getimagesize($dir . $fileData['file_ext']);
-			$config['source_image']   = $dir . $fileData['file_ext'];
-			$config['create_thumb']   = true;
-			if($info[0]>$info[1])
-				$config['height'] = 75;
-			else
-				$config['width']  = 75;
-			$this->image_lib->initialize($config);
-			$this->image_lib->resize();
-
-			$info = getimagesize($dir . '_thumb' . $fileData['file_ext']);
-
-
-			$config['x_axis'] = 0;
-			$config['y_axis'] = 0;
-
-			$config['source_image']   = $dir . '_thumb' . $fileData['file_ext'];
-			$config['create_thumb']   = false;
-			$config['maintain_ratio']   = false;
-			$config['width']          = 75;
-			$config['height']         = 75;
-			if($info[0]>$info[1])
-				$config['x_axis'] = floor(($info[0] - 75)/2);
-			else
-				$config['y_axis'] = floor(($info[1] - 75)/2);
-			$this->image_lib->initialize($config);
-			$this->image_lib->crop();
+			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 75, 75);
+			$this->resizeImage( $dir, $fileData['file_ext'], '255X193', 255, 193);
 		}
 	}
 

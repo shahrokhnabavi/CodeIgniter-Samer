@@ -15,7 +15,11 @@ class Front_end extends CI_Controller {
 
 	public function gallery()
 	{
-		$this->load->view('users/gallery');
+		$this->load->model('gallery');
+		$data = array(
+			'listGallery' => $this->gallery->getAll()
+		);
+		$this->load->view('users/gallery', $data);
 	}
 
 	public function about()
