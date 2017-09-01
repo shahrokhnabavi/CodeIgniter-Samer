@@ -41,7 +41,7 @@ class Post extends CI_Controller {
 		$this->load->model('Content_model');
 		$result = $this->Content_model->list_of_post();
 		$data = array(
-			'currentPageName'  => 'Content',
+			'currentPageName'  => 'Events',
 			'currentPageIcon'  => 'tasks',
 			'all_posts_in_db' => $result
 		);
