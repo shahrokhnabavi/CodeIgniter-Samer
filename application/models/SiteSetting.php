@@ -11,7 +11,8 @@ class SiteSetting extends CI_Model
     public $tbl       = 'settings';
     public $validKeys = array(
         'site_name', 'welcome_msg','site_icon','site_logo',
-        'meta_key','meta_desc','site_subtitle', 'contact_email'
+        'meta_key','meta_desc','site_subtitle', 'contact_email',
+        'contact_text'
     );
 
     public function __construct(){

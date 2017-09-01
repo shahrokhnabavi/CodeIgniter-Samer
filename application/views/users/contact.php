@@ -7,7 +7,10 @@ $this->load->view('users/include/header')
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-        <p> ADDRESS AND OTHER INFORMATION TAKES PLACE HERE<br>ADDRESS AND OTHER INFORMATION TAKES PLACE HERE<br> </p>
+        <p>
+            <br>
+            <?= $this->sitesetting->getValue('contact_text'); ?>
+        </p>
         </div>
       </div>
     </div>
@@ -31,7 +34,7 @@ $this->load->view('users/include/header')
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <label for="email" class="control-label">Email ID</label>
+                    <label for="email" class="control-label">Your Email ID</label>
                 </div>
                 <div class="col-md-12">
                     <input class="form-control" name="email" placeholder="Your Email ID" type="text" value="<?php echo set_value('email'); ?>" />
