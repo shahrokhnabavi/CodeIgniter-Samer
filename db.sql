@@ -1,31 +1,9 @@
-﻿CREATE DATABASE  IF NOT EXISTS `impact` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `impact`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: impact
--- ------------------------------------------------------
--- Server version	5.6.21
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `admins`
---
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2017 at 10:03 AM
+-- Generation Time: Sep 01, 2017 at 02:00 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -35,6 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `impact`
 --
+CREATE DATABASE IF NOT EXISTS `impact` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `impact`;
 
 -- --------------------------------------------------------
 
@@ -42,6 +22,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
 `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -49,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `email` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admins`
@@ -70,10 +51,11 @@ INSERT INTO `admins` (`id`, `name`, `password`, `email`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Table structure for table `blogs`
 --
 
-CREATE TABLE IF NOT EXISTS `content` (
+DROP TABLE IF EXISTS `blogs`;
+CREATE TABLE IF NOT EXISTS `blogs` (
 `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text,
@@ -83,6 +65,31 @@ CREATE TABLE IF NOT EXISTS `content` (
   `updated_at` datetime DEFAULT NULL,
   `admin_id` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `title`, `content`, `slug`, `description`, `created_at`, `updated_at`, `admin_id`) VALUES
+(6, 'Test me now com', 'and there assets/ assets/ assets/ assets/assets/ assets/ assets/ assets/vassets/ assets/ assets/ assets/', 'slug-d', 'me here assets/ assets/ assets/ assets/ assets/ assets/ assets/ assets/', NULL, '2017-09-01 13:53:08', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content`
+--
+
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE IF NOT EXISTS `content` (
+`id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `admin_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `content`
@@ -99,6 +106,7 @@ INSERT INTO `content` (`id`, `title`, `content`, `slug`, `description`, `created
 -- Table structure for table `gallery`
 --
 
+DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE IF NOT EXISTS `gallery` (
 `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -116,8 +124,7 @@ INSERT INTO `gallery` (`id`, `name`, `file_name`, `created_at`, `updated_at`, `a
 (90, 'Delk en Boot', 'WczFCqMJ', '2017-08-31 01:57:01', '2017-09-01 06:04:36', 1),
 (91, 'Family', 'BUGO2qxn', '2017-08-31 01:57:57', '2017-09-01 05:37:28', 1),
 (109, 'Fantastic', 'Mt92bqRY', '2017-09-01 05:30:37', '2017-09-01 05:32:35', 1),
-(110, 'Backgrond', 'iE3528XQ', '2017-09-01 05:31:43', '2017-09-01 05:31:43', 1),
-(111, 'test', 'R0P2dx1h', '2017-09-01 06:31:54', '2017-09-01 06:31:54', 1);
+(110, 'Backgrond', 'iE3528XQ', '2017-09-01 05:31:43', '2017-09-01 05:31:43', 1);
 
 -- --------------------------------------------------------
 
@@ -125,6 +132,7 @@ INSERT INTO `gallery` (`id`, `name`, `file_name`, `created_at`, `updated_at`, `a
 -- Table structure for table `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
 `id` bigint(20) NOT NULL,
   `key` varchar(64) DEFAULT NULL,
@@ -154,6 +162,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `subscription`
 --
 
+DROP TABLE IF EXISTS `subscription`;
 CREATE TABLE IF NOT EXISTS `subscription` (
 `id` int(11) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -180,6 +189,12 @@ INSERT INTO `subscription` (`id`, `email`, `created_at`, `updated_at`) VALUES
 --
 ALTER TABLE `admins`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_content_admin_idx` (`admin_id`);
 
 --
 -- Indexes for table `content`
@@ -213,12 +228,17 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `gallery`
 --
