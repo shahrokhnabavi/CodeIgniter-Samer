@@ -14,35 +14,6 @@ class Blogs extends CI_Controller
 		$this->load->model('blog');
 	}
 
-	public function thumbImage( $id ){
-
-		if( !is_numeric($id) )
-			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
-
-		$record = $this->gallery->getRecordById( $id );
-
-		if( !$record )
-			show_error('[' . __CLASS__ . ']: This record does not exist. Error is on line ' . __LINE__ );
-
-		$files = glob(realpath(FCPATH . 'assets/uploads') . '/' . $id . '-' . $record['file_name'] . '_thumb*');
-		if(file_exists($files[0])){
-			$filename = basename($files[0]);
-			$file_extension = strtolower(substr(strrchr($filename,"."),1));
-
-			switch( $file_extension ) {
-				case "gif": $ctype="image/gif"; break;
-				case "png": $ctype="image/png"; break;
-				case "jpeg":
-				case "jpg": $ctype="image/jpeg"; break;
-				default:
-			}
-
-			header('Content-type: ' . $ctype);
-			readfile($files[0]);
-		}
-		die();
-	}
-
 	public function resizeImage($dir, $ext, $name, $w, $h){
 		$this->image_lib->clear();
 		$info = getimagesize($dir . $ext);
@@ -74,9 +45,9 @@ class Blogs extends CI_Controller
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = '../public/assets/uploads/';
+			$config['upload_path'] = '../public/assets/uploads/blog';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['file_name'] = 'temp' . $sqlData['file_name'];
+			$config['file_name'] = 'temp';
 			$config['file_ext_tolower'] = true;
 			$config['max_size'] = '2048';
 
@@ -89,13 +60,12 @@ class Blogs extends CI_Controller
 		}
 		else
 		{
-			$dir = dirname($fileData['full_path']) . '/' . $id . '-' . $sqlData['file_name'];
+			$dir = dirname($fileData['full_path']) . '/' . $id . '_';
 			rename($fileData['full_path'], $dir . $fileData['file_ext']);
 
 			$this->load->library('image_lib');
 
-			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 75, 75);
-			$this->resizeImage( $dir, $fileData['file_ext'], '255X193', 255, 193);
+			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 80, 80);
 		}
 	}
 
@@ -150,35 +120,34 @@ class Blogs extends CI_Controller
 				$isEdit = true;
 				$sqlData['updated_at'] = date("Y-m-d H:i:s");
 
-//				if (!empty($_FILES['myFile']['name']) ) {
-//					$sqlData['file_name'] = random_string('alnum', 8);
-//					if ($fileData = $this->upload($sqlData) and $fileData === false) {
-//						$isEdit = false;
-//					}
-//				}
+				if (!empty($_FILES['myFile']['name']) ) {
+					if ($fileData = $this->upload($sqlData) and $fileData === false) {
+						$isEdit = false;
+					}
+				}
 
 				if( $isEdit ) {
-//					if( $fileData ) {
-//						$this->deleteFiles($id);
-//						$this->upload($sqlData, $id, $fileData);
-//					}
+					if( $fileData ) {
+						$this->deleteFiles($id);
+						$this->upload($sqlData, $id, $fileData);
+					}
 
 					$this->blog->edit($sqlData, ['id' => $id]);
 
-					$this->session->set_flashdata('reg-success', 'Your blog post is <b>UPDATED</b> successfuly.');
+					$this->session->set_flashdata('msg-success', 'Your blog post is <b>UPDATED</b> successfuly.');
 					redirect('admin/blog');
 				}
 			}
 			else
 			{
-//				if( $fileData = $this->upload( $sqlData ) and $fileData !== false ) {
+				if( $fileData = $this->upload( $sqlData ) and $fileData !== false ) {
 					$id = $this->blog->add($sqlData);
 
-//					$this->upload($sqlData, $id, $fileData);
+					$this->upload($sqlData, $id, $fileData);
 
-					$this->session->set_flashdata('reg-success', 'Your blog post is <b>ADDED</b> successfuly.');
+					$this->session->set_flashdata('msg-success', 'Your blog post is <b>ADDED</b> successfuly.');
 					redirect('admin/blog');
-//				}
+				}
 			}
 		}
 
@@ -211,16 +180,14 @@ class Blogs extends CI_Controller
 		if( !is_numeric($id) )
 			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
 
-//		$this->deleteFiles( $id );
+		$this->deleteFiles( $id );
 
 		$this->blog->delete($id );
-		redirect('admin/gallery');
+		redirect('admin/blog');
 	}
 
 	private function deleteFiles( $id ){
-		$record = $this->bllog->getRecordById( $id );
-
-		$files = realpath(FCPATH . '../uploads/blog') . '/' . $id . '-' . $record['file_name'] . '*';
+		$files = realpath(FCPATH . 'assets/uploads/blog') . '/' . $id . '_*';
 		foreach( glob($files) as $file ){
 			unlink($file);
 		}

@@ -14,6 +14,9 @@ $rowNumber = 0;
             <?php
             if( $msg = validation_errors() )
                 echo '<div class="alert alert-danger">' . $msg . '</div>';
+            if($msg = $this->session->flashdata('error') )
+                foreach( $msg as $err )
+                    echo '<div class="alert alert-danger">' . $err . '</div>';
             if($msg = $this->session->flashdata('msg-succes') )
                 echo '<div class="alert alert-success">' . $msg . '</div>';
             ?>
@@ -23,11 +26,15 @@ $rowNumber = 0;
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal" action="<?= base_url('admin/blog' . (isset($update['id']) ? '/' . $update['id'] : '') ); ?>" method="post">
+                <form class="form-horizontal" enctype="multipart/form-data"  action="<?= base_url('admin/blog' . (isset($update['id']) ? '/' . $update['id'] : '') ); ?>" method="post">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" name="title"
                                value="<?= set_value('title', isset($update['title']) ? $update['title'] : ''); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Select An Image</label>
+                        <input type="file" id="file" name="myFile" />
                     </div>
                     <div class="form-group">
                         <label for="name">Description</label>
@@ -60,17 +67,22 @@ $rowNumber = 0;
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Description</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <?php foreach($list as $posting) { ?>
+                <?php
+                foreach($list as $posting) {
+                    $name = glob(FCPATH . 'assets/uploads/blog/' . $posting['id'] . '__thumb.*');
+                    if(!$name) continue;
+                    $link = basename($name[0]);
+                    ?>
                     <tr>
                         <th scope="row"><?= ++$rowNumber; ?></th>
                         <td><?= $posting['title']; ?></td>
-                        <td><?= $posting['description']; ?></td>
+                        <td><img src="<?= base_url('assets/uploads/blog/' . $link ); ?>" width="80"></td>
                         <td>
                             <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/blog/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
