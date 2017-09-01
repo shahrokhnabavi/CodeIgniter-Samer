@@ -118,15 +118,15 @@ $this->load->view('users/include/header')
                   <h4 class="card-title"><?php echo $value["title"]; ?></h4>
                   <p class="card-text">
                     <?php
-                      echo $value["description"];
+                      echo $value["content"];
                     ?>
               </div>
             </div>
           </div>
             <?php } ?>
     </div> <!-- CONTAINER -->
+    </div> <!-- CONTAINER -->
 
   <?php
-  defined('BASEPATH') OR exit('No direct script access allowed');
   $this->load->view('users/include/footer')
   ?>
