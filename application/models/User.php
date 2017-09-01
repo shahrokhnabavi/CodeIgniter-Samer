@@ -67,10 +67,14 @@ class User extends CI_Model
      * @param $value
      * @return mixed
      */
-    public function getByField( $field, $value ){
-        $data = array(
-            $field => $value
-        );
+    public function getByField( $field, $value = '' ){
+        if ( is_array($field) )
+            $data = $field;
+        else
+            $data = array(
+                $field => $value
+            );
+
         return $this->db->get_where($this->tbl, $data)->row_array();
     }
 
