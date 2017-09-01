@@ -83,7 +83,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                 <?php } ?>
                 </tbody>
             </table>
-            <?php $this->load->view('admins/include/paginating', ['page' => 'admin/user']); ?>
+            <?php $this->load->view('admins/include/paginating'); ?>
         </div>
     </div>
 

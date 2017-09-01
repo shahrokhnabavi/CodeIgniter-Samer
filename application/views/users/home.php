@@ -9,8 +9,13 @@ $this->load->view('users/include/header')
        <div class ="section">
           <div class="header-unit">
 <div id="video-container">
+<<<<<<< HEAD
 <h3 class="title_vid"> <?= $this->sitesetting->getValue('site_name'); ?> </h3><br>
 <p class="title_vid2"> <?= $this->sitesetting->getValue('site_subtitle'); ?></p>
+=======
+<h3 class="title_vid"> Samer Abdolnour </h3><br>
+<p class="title_vid2"> This place some text can take place.</p>
+>>>>>>> 06c096d0d8a49e81aef55730edb3f0cf5c6753a2
 <video autoplay loop muted class="fillWidth">
 <source src="<?php echo base_url('assets/img/vid.mp4');?>" type="video/mp4">
      <source src="<?php echo base_url('assets/img/vid.webm');?>" type="video/webm">
@@ -19,7 +24,11 @@ $this->load->view('users/include/header')
 </div><!-- end container -->
 </div><!-- end .header-unit -->
 
+<<<<<<< HEAD
         </div>
+=======
+        </section>
+>>>>>>> 06c096d0d8a49e81aef55730edb3f0cf5c6753a2
 
     <!-- Page Content -->
 
@@ -27,7 +36,13 @@ $this->load->view('users/include/header')
      <div class="row">
       <div class="col-sm-12 first_row">
         <hr class="style">
+<<<<<<< HEAD
           <?= $this->sitesetting->getValue('welcome_msg'); ?>
+=======
+        Welcome to Samer Abdelnouer cultural website.<br>
+        Here some info text...<br>
+        Here some info text...<br>
+>>>>>>> 06c096d0d8a49e81aef55730edb3f0cf5c6753a2
         <hr class="style"><br><br>
       </div>
 

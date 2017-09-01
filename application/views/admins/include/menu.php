@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <hr>
     <ul class="nav nav-stacked collapse in" id="userMenu">
         <li class="active"> <a href="<?= base_url('admin/dashboard'); ?>"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
-        <li><a href="<?= base_url('admin/emails'); ?>"><i class="glyphicon glyphicon-envelope"></i> Subscriptions <span class="badge badge-info hidden">4</span></a></li>
+        <li><a href="<?= base_url('admin/envelope'); ?>"><i class="glyphicon glyphicon-envelope"></i> Subscriptions <span class="badge badge-info">4</span></a></li>
         <li><a href="<?= base_url('admin/content');  ?>"><i class="glyphicon glyphicon-tasks"></i> Content</a></li>
         <li><a href="<?= base_url('admin/gallery');  ?>"><i class="glyphicon glyphicon-picture"></i> Gallery</a></li>
         <li><a href="<?= base_url('admin/user');     ?>"><i class="glyphicon glyphicon-user"></i> Users</a></li>

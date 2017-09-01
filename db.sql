@@ -63,8 +63,8 @@ CREATE TABLE `content` (
   `admin_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_content_admin_idx` (`admin_id`),
-  CONSTRAINT `fk_content_admin` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_content_id_admin` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE `content` (
 
 LOCK TABLES `content` WRITE;
 /*!40000 ALTER TABLE `content` DISABLE KEYS */;
+INSERT INTO `content` VALUES (3,'The Night Way','This is the content of my content for this perpose jhgfd','the-night-way','This is a short description about how this content will work hg','2017-08-31 15:09:19','2017-08-31 15:09:19',1),(4,'Ring A10 West bij Amsterdam zaterdag al open','Rijkswaterstaat laat weten dat bij het plannen van de werkzaamheden extra tijd was uitgetrokken voor eventuele tegenvallers. Maar die zijn er nauwelijks geweest. \"Het werk verliep soepel en het weer zat mee\'\', aldus een woordvoerder. \r\n\r\nDe afgelopen zes weken is asfalt weggefreesd en opnieuw aangebracht en is nieuwe belijning getrokken. Verder zijn de bestrating in de bermen en de matrixborden vervangen en is de regenwaterafvoer verbeterd.','Ring-A10','Het verkeer kan vanaf zaterdagmorgen vroeg weer in beide richtingen gebruikmaken van de A10 West bij Amsterdam. Dat is twee dagen eerder dan gepland.','2017-08-31 14:16:31','2017-08-31 14:16:31',1),(5,'Transportbedrijf Brinkman krijgt deurwaarder over de vloer','De drie medewerkers, allen chauffeur en FNV-lid, zijn volgens FNV meerdere keren onterecht ontslagen bij het bedrijf. De rechter heeft dit besluit teruggefloten. Twee chauffeurs werken volgens de FNV nog bij het bedrijf en de ander heeft een ontbonden contract.\r\n\r\nDoor het ontslag zouden de medewerkers volgens de vakbond inkomsten zijn misgelopen. De rechtbank bepaalde eerder dit jaar al dat het vervoersbedrijf met terugwerkende kracht loon moet betalen.\r\n\r\nFacebook\r\nDe redenen voor de ontslagen lopen uiteen. Zo zou een medewerker volgens de vakbond zijn ontslagen nadat deze het op Facebook had opgenomen voor de vakbond. Ook stelt de FNV dat een medewerker ontslagen is omdat deze verdacht werd van geweld, wat volgens FNV-medewerker Edwin Atema berust op een \"fabel\".\r\n\r\nEen ander ontslag zou volgens Atema zijn veroorzaakt doordat een medewerker zich niet zou hebben gehouden aan de rijrusttijden, terwijl dit bedrijfsbeleid is.\r\n\r\nEerdere pogingen\r\nDe FNV stelt dat de afgelopen maanden meerdere malen is gepoogd beslag te leggen op rekeningen van de Drentse onderneming. Dit zou echter te weinig hebben opgeleverd. \"Het kan zijn dat het bedrijf klanten heeft gevraagd transacties op een andere rekening over te maken.\"\r\n\r\nDe deurwaarder begint volgens FNV om 14:00 uur \'s middags met de beslaglegging in Emmen. Sinds 13:30 uur deze middag zouden sympathisanten zich verzamelen voor het bedrijfsgebouw. Atema: \"Wij hebben geadviseerd om te zoeken naar auto’s, heftrucks en computers. Maar hierover beslist de deurwaarder.\"\r\n\r\nDe FNV won eerder dit jaar ook een zaak tegen Brinkman Trans Holland over cao-lonen en arbeidsomstandigheden van Poolse en Moldavische chauffeurs. De vakbond dwong toen af dat het vervoersbedrijf deze medewerkers Nederlandse cao-lonen moest betalen en dat het bedrijf deze chauffeurs niet in hun truck moest laten overnachten.\r\n\r\nBrinkman Trans Holland wil geen commentaar geven over deze kwestie.','trans-parent','IKEA-transporteur Brinkman Trans Holland krijgt vanmiddag een deurwaarder met politiebegeleiding over de vloer. Deze zou volgens vakbond FNV voor 100.000 euro aan natura beslag moeten leggen.','2017-08-31 14:34:03','2017-08-31 14:34:03',1);
 /*!40000 ALTER TABLE `content` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,10 +144,10 @@ DROP TABLE IF EXISTS `subscription`;
 CREATE TABLE `subscription` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,6 +156,7 @@ CREATE TABLE `subscription` (
 
 LOCK TABLES `subscription` WRITE;
 /*!40000 ALTER TABLE `subscription` DISABLE KEYS */;
+INSERT INTO `subscription` VALUES (2,'shahrokh@yahoo.com','2017-08-31 11:34:41','2017-08-31 11:34:41'),(3,'mina@ymail.com','2017-08-31 11:34:41','2017-08-31 11:34:41'),(4,'nazanin@gmail.com','2017-08-31 11:34:41','2017-08-31 11:34:41');
 /*!40000 ALTER TABLE `subscription` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -167,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-31 11:02:00
+-- Dump completed on 2017-08-31 16:42:18

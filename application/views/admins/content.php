@@ -6,7 +6,6 @@ $administrator_id = $this->session->userdata('cUser');
 $rowNumber = 0;
 
  ?>
-
     <div class="container">
 
         <div class="row">
@@ -86,8 +85,12 @@ $rowNumber = 0;
                 <?php } ?>
                 </tbody>
             </table>
+           
         </div>
     </div>
+
+
+
 
 <?php
 $this->load->view('admins/include/footer');
