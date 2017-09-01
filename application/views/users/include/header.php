@@ -13,6 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet
     <link href='http://fonts.googleapis.com/css?family=Buenard:700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url('assets/css/business-frontpage.css');?>" rel="stylesheet">

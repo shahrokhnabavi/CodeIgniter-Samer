@@ -2,10 +2,43 @@
   margin-top:10px;
 }
 
+.well{
+  background-color: #eaeaea;
+  padding: 15px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+.well img{
+  margin-right: 15px !important;
+}
+.media-body{
+  position: relative;
+}
+.list-inline.list-unstyled{
+  margin-bottom: 0px;
+  position: absolute;
+  right:0px;
+  top:0px;
+}
+.list-inline.list-unstyled li{
+    display: inline-block;
+}
+
+.media-body p{
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+
 .newsletter{
   background-color: #eaeaea;
   padding: 15px;
   font-size: 14px;
+  height: 229px;
+  border: 1px solid #ccc;
+}
+
+.newsletter .nw-title{
+ margin-bottom:0px;
 }
 
 .newsletter .panel-heading h3{
@@ -13,6 +46,7 @@
 }
 
 .newsletter hr{
+  margin-top: 5px;
   margin-bottom: 10px;
 }
 
@@ -20,6 +54,7 @@
   margin-right: 10px;
 }
 
-.news{
-
+.newsletter form{
+  position: absolute;
+  bottom: 22px;
 }
