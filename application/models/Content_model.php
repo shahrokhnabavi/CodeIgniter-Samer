@@ -12,7 +12,7 @@ class Content_model extends CI_Model {
     public function list_of_post()
     {
 
-        $sql = "SELECT id, title, content, description FROM content";
+        $sql = "SELECT id, title, content, description FROM content ORDER BY id DESC";
 
         return $this->db->query( $sql)->result_array();
     }

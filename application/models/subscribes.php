@@ -26,8 +26,9 @@ class Subscribes extends CI_Model{
      *
      * @return mixed
      */
-    public function getAll($limit = 0, $offset = 0){
+    public function getAll( $limit = 0, $offset = 0, $order = array('id', 'desc') ){
         $offset = $limit * $offset;
+        $this->db->order_by($order[0], $order[1]);
         return $this->db->get('subscription', $limit, $offset)->result_array();
     }
 
