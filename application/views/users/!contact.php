@@ -25,19 +25,16 @@ $this->load->view('users/include/header')
             <div class="form-group">
                 <div class="col-md-12">
                     <label for="name" class="control-label">Name</label>
-
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <input class="form-control" name="name" placeholder="Your Full Name" type="text" value="<?php echo set_value('name'); ?>" />
                     <span class="text-danger"><?php echo form_error('name'); ?></span>
                 </div>
-
-                <!-- GoogleMAP -->
             </div>
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <label for="email" class="control-label">Your Email Address</label>
+                    <label for="email" class="control-label">Your Email ID</label>
                 </div>
                 <div class="col-md-12">
                     <input class="form-control" name="email" placeholder="Your Email ID" type="text" value="<?php echo set_value('email'); ?>" />
@@ -63,17 +60,12 @@ $this->load->view('users/include/header')
             </fieldset>
             <?php echo form_close(); ?>
             <?php echo $this->session->flashdata('msg'); ?>
-
-          </div>
-
-          <div class="col-md-6 col-md-offset-3 well">
-          <div id="map"></div>
         </div>
     </div>
-    </div>
-
+</div>
     <!-- /.container -->
 
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('users/include/footer')
 ?>

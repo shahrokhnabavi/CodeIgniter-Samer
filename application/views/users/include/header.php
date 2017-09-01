@@ -13,11 +13,11 @@
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Buenard:700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url('assets/css/business-frontpage.css');?>" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css');?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/main.css');?>">
@@ -36,17 +36,17 @@
             <li class="nav-item active">
               <a class="nav-link" href="<?php echo base_url('home');?>">Home
                 <span class="sr-only">(current)</span>
-              </a>  
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('gallery');?>">Gallery</a>
             </li>
-            <li class="nav-item">   
+            <li class="nav-item">
             <a class="logo" href="#">
               <img id="logo-navbar-middle" src="<?= base_url('/' . $this->sitesetting->getValue('site_logo') );?>" width="100" alt=""></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('about');?>">About</a>
+              <a class="nav-link" href="<?php echo base_url('events');?>">Events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('contact');?>">Contact</a>
