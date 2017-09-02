@@ -18,7 +18,7 @@ class Blogs extends CI_Controller
 		$this->image_lib->clear();
 		$info = getimagesize($dir . $ext);
 		$config['source_image']   = $dir . $ext;
-		$config['new_image']      = $dir . '_' . $name . $ext;
+		$config['new_image']      = $dir . $name . $ext;
 		$config['maintain_ratio'] = true;
 		$config['create_thumb']   = false;
 		if($info[0]/$info[1] > $w / $h)
@@ -29,8 +29,8 @@ class Blogs extends CI_Controller
 		$this->image_lib->resize();
 
 		$this->image_lib->clear();
-		$info = getimagesize($dir . '_' . $name . $ext);
-		$config['source_image']   = $dir . '_' . $name . $ext;
+		$info = getimagesize($dir . $name . $ext);
+		$config['source_image']   = $dir . $name . $ext;
 		$config['create_thumb']   = false;
 		$config['maintain_ratio'] = false;
 		$config['width']          = $w;
@@ -81,7 +81,7 @@ class Blogs extends CI_Controller
 			array(
 				'field' => 'title',
 				'label' => 'Title',
-				'rules' => 'trim|required|min_length[6]|max_length[255]'
+				'rules' => 'trim|required|min_length[6]|max_length[255]|regex_match[/^[a-zA-Z0-9 ]+$/]'
 			),
 			array(
 				'field' => 'description',
@@ -96,14 +96,13 @@ class Blogs extends CI_Controller
 			array(
 				'field' => 'slug',
 				'label' => 'Slug',
-				'rules' => 'trim|required|min_length[2]|max_length[20]'
+				'rules' => 'trim|required|min_length[2]|max_length[20]|regex_match[/^[a-zA-Z\-]+$/]'
 			)
 		);
 		$this->form_validation->set_rules($validation);
 
 
 		if( $this->form_validation->run() === true ) {
-			$this->load->helper('string');
 			$sqlData = array(
 				'title' => $this->input->post('title', TRUE),
 				'content' => $this->input->post('content', TRUE),
@@ -175,7 +174,7 @@ class Blogs extends CI_Controller
 	 * @param $id
 	 */
 	public function delete( $id ){
-		$this->user->loggedIn('login', false);
+		$this->user->loggedIn('admin', false);
 
 		if( !is_numeric($id) )
 			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );

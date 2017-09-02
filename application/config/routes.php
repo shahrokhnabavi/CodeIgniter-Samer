@@ -6,28 +6,32 @@ $route['translate_uri_dashes'] = FALSE;
 
 // ***********************
 // Admin Panel by Shahrokh
-$route['admin']           = 'admins/login';
+$route['admin']           = 'users/login';
+$route['admin/logout']    = 'users/logout';
 $route['admin/dashboard'] = 'site/dashboard';
 $route['admin/setting']   = 'site/setting';
-$route['admin/logout']    = 'admins/logout';
 
 
-$route['admin/user([0-9]*|[0-9]*/[0-9]*)'] = 'admins/form/$1/$2';
-$route['admin/delete-user/([0-9]*)']       = 'admins/delete/$1';
+$route['admin/user([0-9]*|[0-9]*/[0-9]*)'] = 'users/form/$1/$2';
+$route['admin/delete-user/([0-9]*)']       = 'users/delete/$1';
 
 $route['admin/blog([0-9]*|[0-9]*/[0-9]*)'] = 'blogs/form/$1/$2';
 $route['admin/delete-blog/([0-9]*)']       = 'blogs/delete/$1';
 
 $route['admin/gallery([0-9]*|[0-9]*/[0-9]*)'] = 'galleries/form/$1/$2';
 $route['admin/delete-gallery/([0-9]*)']       = 'galleries/delete/$1';
-$route['thumb-gallery/([0-9]*)']  = 'galleries/thumbImage/$1';
+$route['thumb-gallery/([0-9]*)']              = 'galleries/thumbImage/$1';
+
 
 // *********************
 // Admin Panel by Sheril
-$route['admin/content'] = 'post';
-$route['admin/delete-content/([0-9]*)'] = 'post/delete/$1';
-$route['admin/edit-content/(:num)'] = 'post/edit/$1';
-$route['admin/content_update']      = 'post/update';
+$route['admin/event([0-9]*|[0-9]*/[0-9]*)'] = 'events/form/$1/$2';
+$route['admin/delete-event/([0-9]*)']       = 'events/delete/$1';
+
+//$route['admin/content'] = 'post';
+//$route['admin/delete-content/([0-9]*)'] = 'post/delete/$1';
+//$route['admin/edit-content/(:num)']     = 'post/edit/$1';
+//$route['admin/content_update']          = 'post/update';
 
 
 //front end routes

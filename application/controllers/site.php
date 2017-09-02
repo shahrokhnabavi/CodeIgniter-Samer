@@ -32,11 +32,10 @@ class Site extends CI_Controller
 		}
 
 		$this->load->model('blog');
-		$this->load->model('Content_model');
-		$content = $this->Content_model->content_home();
+		$this->load->model('event');
 		$content_home = array(
-			'recent_content' => $content,
-			'recent_blog'    => $this->blog->getAll( 2, 0 )
+			'event' => $this->event->getAll(3),
+			'blog'  => $this->blog->getAll(2)
 		);
 		$this->load->view('visitor/home',$content_home);
 	}
@@ -52,10 +51,9 @@ class Site extends CI_Controller
 
 	public function events()
 	{
-		$this->load->model('Content_model');
-		$content = $this->Content_model->content_home(0);
+		$this->load->model('event');
 		$content_home = array(
-			'recent_content' => $content
+			'event' => $this->event->getAll()
 		);
 		$this->load->view('visitor/events',$content_home);
 	}

@@ -16,7 +16,6 @@ class Blog extends CI_Model
     }
 
 
-
     public function getRecordById( $id ){
         if( !is_numeric($id) )
             show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
@@ -29,8 +28,8 @@ class Blog extends CI_Model
 
 
 
-    public function add( $user, $msg = '' ){
-        $this->db->insert( $this->tbl, $user);
+    public function add( $data, $msg = '' ){
+        $this->db->insert( $this->tbl, $data);
 
         if ( $msg === '' )
             return $this->db->insert_id();

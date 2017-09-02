@@ -1,53 +1,19 @@
 <?php
-/**
- * Created Shahrokh Nabavi.
- * Date: 8/29/2017
- * Time: 9:45 AM
- */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Galleries extends CI_Controller
+class Events extends CI_Controller
 {
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->model('gallery');
-	}
-
-	public function thumbImage( $id ){
-
-		if( !is_numeric($id) )
-			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );
-
-		$record = $this->gallery->getRecordById( $id );
-
-		if( !$record )
-			show_error('[' . __CLASS__ . ']: This record does not exist. Error is on line ' . __LINE__ );
-
-		$files = glob(realpath(FCPATH . 'assets/uploads') . '/' . $id . '-' . $record['file_name'] . '_thumb*');
-		if(file_exists($files[0])){
-			$filename = basename($files[0]);
-			$file_extension = strtolower(substr(strrchr($filename,"."),1));
-
-			switch( $file_extension ) {
-				case "gif": $ctype="image/gif"; break;
-				case "png": $ctype="image/png"; break;
-				case "jpeg":
-				case "jpg": $ctype="image/jpeg"; break;
-				default:
-			}
-
-			header('Content-type: ' . $ctype);
-			readfile($files[0]);
-		}
-		die();
+		$this->load->model('event');
 	}
 
 	public function resizeImage($dir, $ext, $name, $w, $h){
 		$this->image_lib->clear();
 		$info = getimagesize($dir . $ext);
 		$config['source_image']   = $dir . $ext;
-		$config['new_image']      = $dir . '_' . $name . $ext;
+		$config['new_image']      = $dir . $name . $ext;
 		$config['maintain_ratio'] = true;
 		$config['create_thumb']   = false;
 		if($info[0]/$info[1] > $w / $h)
@@ -58,8 +24,8 @@ class Galleries extends CI_Controller
 		$this->image_lib->resize();
 
 		$this->image_lib->clear();
-		$info = getimagesize($dir . '_' . $name . $ext);
-		$config['source_image']   = $dir . '_' . $name . $ext;
+		$info = getimagesize($dir . $name . $ext);
+		$config['source_image']   = $dir . $name . $ext;
 		$config['create_thumb']   = false;
 		$config['maintain_ratio'] = false;
 		$config['width']          = $w;
@@ -72,12 +38,11 @@ class Galleries extends CI_Controller
 		$this->image_lib->crop();
 	}
 
-
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = '../public/assets/uploads/';
+			$config['upload_path'] = './assets/uploads/event';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['file_name'] = 'temp' . $sqlData['file_name'];
+			$config['file_name'] = 'temp';
 			$config['file_ext_tolower'] = true;
 			$config['max_size'] = '2048';
 
@@ -90,15 +55,16 @@ class Galleries extends CI_Controller
 		}
 		else
 		{
-			$dir = dirname($fileData['full_path']) . '/' . $id . '-' . $sqlData['file_name'];
+			$dir = dirname($fileData['full_path']) . '/' . $id . '_';
 			rename($fileData['full_path'], $dir . $fileData['file_ext']);
 
 			$this->load->library('image_lib');
 
-			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 75, 75);
-			$this->resizeImage( $dir, $fileData['file_ext'], '255X193', 255, 193);
+			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 80, 80);
+			$this->resizeImage( $dir, $fileData['file_ext'], '348X232', 348, 232);
 		}
 	}
+
 
 	/**
 	 * @param $page
@@ -110,18 +76,36 @@ class Galleries extends CI_Controller
 
 		$validation = array(
 			array(
-				'field' => 'name',
-				'label' => 'Image Name',
-				'rules' => 'trim|required|regex_match[/^[a-zA-Z ]+$/]'
+				'field' => 'title',
+				'label' => 'Title',
+				'rules' => 'trim|required|min_length[6]|max_length[255]|regex_match[/^[a-zA-Z ]+$/]'
+			),
+			array(
+				'field' => 'content',
+				'label' => 'Content',
+				'rules' => 'trim|required|min_length[50]'
+			),
+			array(
+				'field' => 'start',
+				'label' => 'Start Date',
+				'rules' => 'trim|required'
+			),
+			array(
+				'field' => 'end',
+				'label' => 'End Date',
+				'rules' => 'trim|required'
 			)
 		);
 		$this->form_validation->set_rules($validation);
 
 
 		if( $this->form_validation->run() === true ) {
-			$this->load->helper('string');
+
 			$sqlData = array(
-				'name'      => $this->input->post('name',true),
+				'title'     => $this->input->post('title', TRUE),
+				'content'   => $this->input->post('content', TRUE),
+				'startdate' => $this->input->post('start', TRUE),
+				'enddate'   => $this->input->post('end', TRUE),
 				'admin_id'  => $this->user->cUser('id')
 			);
 
@@ -134,7 +118,6 @@ class Galleries extends CI_Controller
 				$sqlData['updated_at'] = date("Y-m-d H:i:s");
 
 				if (!empty($_FILES['myFile']['name']) ) {
-					$sqlData['file_name'] = random_string('alnum', 8);
 					if ($fileData = $this->upload($sqlData) and $fileData === false) {
 						$isEdit = false;
 					}
@@ -146,22 +129,21 @@ class Galleries extends CI_Controller
 						$this->upload($sqlData, $id, $fileData);
 					}
 
-					$this->gallery->edit($sqlData, ['id' => $id]);
+					$this->event->edit($sqlData, ['id' => $id]);
 
-					$this->session->set_flashdata('reg-success', 'Your image is <b>UPDATED</b> successfuly.');
-					redirect('admin/gallery');
+					$this->session->set_flashdata('msg-success', 'Your blog post is <b>UPDATED</b> successfuly.');
+					redirect('admin/event');
 				}
 			}
 			else
 			{
-				$sqlData['file_name'] = random_string('alnum', 8);
 				if( $fileData = $this->upload( $sqlData ) and $fileData !== false ) {
-					$id = $this->gallery->add($sqlData);
+					$id = $this->event->add($sqlData);
 
 					$this->upload($sqlData, $id, $fileData);
 
-					$this->session->set_flashdata('reg-success', 'Your image is <b>ADDED</b> successfuly.');
-					redirect('admin/gallery');
+					$this->session->set_flashdata('msg-success', 'Your blog post is <b>ADDED</b> successfuly.');
+					redirect('admin/event');
 				}
 			}
 		}
@@ -169,19 +151,20 @@ class Galleries extends CI_Controller
 		$id = (int) $id;
 		$pg = array(
 			'cPageNumbr' => (int) $page,
-			'count'		 => $this->gallery->count(),
+			'count'		 => $this->event->count(),
 			'perPage'	 => 10
 		);
 
 		$data = array(
-			'currentPageName'  => 'Gallery',
-			'currentPageIcon'  => 'picture',
-			'list'   	 => $this->gallery->getAll( $pg['perPage'], $pg['cPageNumbr'] ),
-			'update' 	 => $this->gallery->getByField('id', (int) $id ),
+			'currentPageName'  => 'Events',
+			'currentPageIcon'  => 'tasks',
+			'list'   	 => $this->event->getAll( $pg['perPage'], $pg['cPageNumbr'] ),
+			'update' 	 => $this->event->getByField('id', (int) $id ),
 			'paginating' => $pg
 		);
-		$this->load->view('admins/gallery', $data);
+		$this->load->view('admins/event', $data);
 	}
+
 
 	/**
 	 * Type: Page
@@ -197,14 +180,12 @@ class Galleries extends CI_Controller
 
 		$this->deleteFiles( $id );
 
-		$this->gallery->delete($id );
-		redirect('admin/gallery');
+		$this->event->delete($id );
+		redirect('admin/event');
 	}
 
 	private function deleteFiles( $id ){
-		$record = $this->gallery->getRecordById( $id );
-
-		$files = realpath(FCPATH . 'assets/uploads') . '/' . $id . '-' . $record['file_name'] . '*';
+		$files = realpath(FCPATH . 'assets/uploads/event') . '/' . $id . '_*';
 		foreach( glob($files) as $file ){
 			unlink($file);
 		}

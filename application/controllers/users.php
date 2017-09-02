@@ -6,7 +6,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admins extends CI_Controller
+class Users extends CI_Controller
 {
 	public function __construct(){
 		parent::__construct();
@@ -15,7 +15,7 @@ class Admins extends CI_Controller
 	
 	public function login()
 	{
-//		$this->user->loggedIn('admin/dashboard');
+		$this->user->loggedIn('admin/dashboard');
 
 		$validation = array(
 			array(
