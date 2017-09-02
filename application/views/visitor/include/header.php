@@ -34,21 +34,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item <?= ($this->currentRoute) ? '' : 'active'; ?>">
-              <a class="nav-link" href="<?php echo base_url();?>">Home
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link" href="<?php echo base_url();?>">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= ($this->currentRoute === 'gallery') ? 'active' : ''; ?>">
               <a class="nav-link" href="<?php echo base_url('gallery');?>">Gallery</a>
             </li>
             <li class="nav-item">
-            <a class="logo" href="#">
+            <a class="logo">
               <img id="logo-navbar-middle" src="<?= base_url('/' . $this->sitesetting->getValue('site_logo') );?>" width="100" alt=""></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= ($this->currentRoute === 'events') ? 'active' : ''; ?>">
               <a class="nav-link" href="<?php echo base_url('events');?>">Events</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= ($this->currentRoute === 'contact') ? 'active' : ''; ?>">
               <a class="nav-link" href="<?php echo base_url('contact');?>">Contact</a>
             </li>
           </ul>
