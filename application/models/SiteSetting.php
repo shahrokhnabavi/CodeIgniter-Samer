@@ -12,7 +12,7 @@ class SiteSetting extends CI_Model
     public $validKeys = array(
         'site_name', 'welcome_msg','site_icon','site_logo',
         'meta_key','meta_desc','site_subtitle', 'contact_email',
-        'contact_text'
+        'contact_text', 'subscribe_msg'
     );
 
     public function __construct(){

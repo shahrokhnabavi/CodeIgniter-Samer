@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('users/include/header')
+$this->load->view('visitor/include/header');
 ?>
 
     <!-- Page Content -->
@@ -75,5 +75,4 @@ $this->load->view('users/include/header')
     <!-- /.container -->
 
 <?php
-$this->load->view('users/include/footer')
-?>
+$this->load->view('visitor/include/footer');

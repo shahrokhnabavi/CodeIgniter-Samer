@@ -8,14 +8,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Site extends CI_Controller
 {
+	public $currentRoute;
+
 	public function __construct(){
 		parent::__construct();
 
 		$this->load->model('sitesetting');
+		$this->currentRoute = $this->uri->segment(1);
 	}
 
-	public function index(){
-		$this->load->view('visitor/index');
+	public function index()
+	{
+		$this->form_validation->set_rules('sub', 'E-Mail', 'trim|required|valid_email|is_unique[subscription.email]');
+		if ($this->form_validation->run() === TRUE)
+		{
+			$values = array(
+				'email' => $this->input->post('sub', TRUE)
+			);
+			$this->load->model('subscribes');
+			$this->subscribes->add_subscriber( $values );
+			$this->session->set_flashdata('successMsg', '<p>Thanks for your subscription.</p>');
+			redirect();
+		}
+
+		$this->load->model('blog');
+		$this->load->model('Content_model');
+		$content = $this->Content_model->content_home();
+		$content_home = array(
+			'recent_content' => $content,
+			'recent_blog'    => $this->blog->getAll( 2, 0 )
+		);
+		$this->load->view('visitor/home',$content_home);
+	}
+
+	public function gallery()
+	{
+		$this->load->model('gallery');
+		$data = array(
+			'listGallery' => $this->gallery->getAll()
+		);
+		$this->load->view('visitor/gallery', $data);
+	}
+
+	public function events()
+	{
+		$this->load->model('Content_model');
+		$content = $this->Content_model->content_home(0);
+		$content_home = array(
+			'recent_content' => $content
+		);
+		$this->load->view('visitor/events',$content_home);
+	}
+
+	public function contact()
+	{
+		$this->load->view('visitor/contact');
 	}
 
 	public function dashboard()

@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('users/include/header')
+$this->load->view('visitor/include/header')
 ?>
-
-    <!-- Page Content -->
+        <!-- Page Content -->
     <div class="container">
-      <div class="row">
+        <br>
+        <h1 class="my-4 text-center text-lg-left">Events</h1>
+
+        <div class="row text-center text-lg-left">
         <?php foreach ($recent_content as $value ){?>
           <div class="col-lg-4 col-md-4 col-sm-6 portfolio-item">
           <div class="card h-100">
@@ -23,11 +25,6 @@ $this->load->view('users/include/header')
         <?php } ?>
         </div>
     </div>
-    <!-- /.container -->
-
-    <!--
-         footer -->
 
   <?php
-  $this->load->view('users/include/footer')
-  ?>
+  $this->load->view('visitor/include/footer');

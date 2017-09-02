@@ -1,11 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Subscribe extends CI_Controller{
+class Subscribe extends CI_Controller
+{
+	public function __construct(){
+		parent::__construct();
+
+		$this->load->model('subscribes');
+	}
 
 	//Added by SHAHROKH
 	public function listOfAll( $page ){
-		$this->load->model('subscribes');
 
 		$pg = array(
 			'cPageNumbr' => (int) $page,
@@ -24,35 +29,10 @@ class Subscribe extends CI_Controller{
 	}
 	//End of SHAHROKH
 
-	// ADD SUBSCRIBER TO DATABASE
-	public function add_member()
-	{
-		$sub = $this->input->post('sub', TRUE);
-		//Validation Statement.
-		$this->form_validation->set_rules('sub', 'E-Mail', 'trim|required|valid_email|is_unique[subscription.email]');
-		if ($this->form_validation->run() === FALSE)
-		{
-			$this->load->model('Content_model');
-			$content = $this->Content_model->content_home();
-			$content_home = array('recent_content' => $content);
-			$this->load->view('users/home',$content_home);
-		}
-		else
-		{
-			$values = array(
-				'email' => $this->input->post('sub', TRUE)
-			);
-			$this->load->model('subscribes');
-			$email = $this->subscribes->add_subscriber( $values );
-			$this->session->set_flashdata('successMsg', '<p>Thanks for your subscription.</p>');
-			redirect('/');
-		}
-	}
-
-
 	public function delete_member( $id )
 	{
-		$this->load->model('subscribes');
+		$this->user->loggedIn('admin', false);
+
 		$this->subscribes->delete_subscriber($id);
 		redirect('admin/emails');
 	}

@@ -30,14 +30,11 @@ $route['admin/edit-content/(:num)'] = 'post/edit/$1';
 $route['admin/content_update']      = 'post/update';
 
 
-
 //front end routes
-$route['default_controller'] = 'front_end';
-$route['home'] = 'front_end';
-$route['gallery'] = 'front_end/gallery';
-$route['events'] = 'front_end/events';
-$route['subscribe'] = 'subscribe/add_member';
-$route['contact'] = 'front_end/contact';
+$route['default_controller'] = 'site';
+$route['gallery']   = 'site/gallery';
+$route['events']    = 'site/events';
+$route['contact']   = 'site/contact';
 $route['contact_form'] = 'contactform';
 
 

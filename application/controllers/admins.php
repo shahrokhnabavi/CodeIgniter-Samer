@@ -15,7 +15,7 @@ class Admins extends CI_Controller
 	
 	public function login()
 	{
-		$this->user->loggedIn('admin/dashboard');
+//		$this->user->loggedIn('admin/dashboard');
 
 		$validation = array(
 			array(
@@ -36,12 +36,12 @@ class Admins extends CI_Controller
 			$result = $this->user->getUserByEmail( $this->input->post('email',true) );
 			if( $result )
 			{
-				$passwd = $this->password( $this->input->post('passwd') );
-				
+				$passwd = $this->password( $this->input->post('password') );
 				if( $passwd === $result['password'] )
 				{
 					$this->session->set_userdata('cUser', $result['id']);
 					redirect('admin/dashboard');
+					die();
 				}
 				else
 					$this->session->set_flashdata( 'error', 'The password does not match.' );

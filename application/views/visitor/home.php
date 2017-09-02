@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('users/include/header')
+$this->load->view('visitor/include/header')
 ?>
 
     <!-- Header with Background Image -->
@@ -81,10 +81,8 @@ $this->load->view('users/include/header')
                         <h3 class="panel-title">Subscribe to Newsletter</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Sign up and receive the latest news, reviews and trends on your favorite technology topics.</p>
-                        <p class="nw-title"><b>Get our Daily News Newsletter:</b></p>
+                        <?= $this->sitesetting->getValue('subscribe_msg'); ?>
                         <hr>
-
                         <?php
                         echo validation_errors();
                         $temp = $this->session->flashdata('successMsg');
@@ -92,7 +90,7 @@ $this->load->view('users/include/header')
                             echo $temp;
                         }
                         ?>
-                        <form action="<?php echo base_url('subscribe');?>" method="POST" class="form-inline">
+                        <form action="<?php echo base_url();?>" method="POST" class="form-inline">
                             <input type="hidden" name="subscribe" value="subscribe">
                             <div class="form-group">
                                 <input class="form-control" type="text" name="sub" placeholder="Enter Your E-mail">
@@ -110,23 +108,22 @@ $this->load->view('users/include/header')
 
         <div class="row">
             <?php foreach ($recent_content as $value ){?>
-          <div class="col-lg-4 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://refugee-action.org.uk/wp-content/uploads/2016/11/Let-Refugees-Learn2.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <h4 class="card-title"><?php echo $value["title"]; ?></h4>
-                  <p class="card-text">
-                    <?php
-                      echo $value["content"];
-                    ?>
-              </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://refugee-action.org.uk/wp-content/uploads/2016/11/Let-Refugees-Learn2.jpg" alt=""></a>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4 class="card-title"><?php echo $value["title"]; ?></h4>
+                            <p class="card-text"><?php echo $value["content"]; ?></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
             <?php } ?>
-    </div> <!-- CONTAINER -->
+        </div> <!-- CONTAINER -->
+
     </div> <!-- CONTAINER -->
 
   <?php
-  $this->load->view('users/include/footer')
+  $this->load->view('visitor/include/footer')
   ?>

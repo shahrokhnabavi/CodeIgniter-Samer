@@ -2,6 +2,64 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Post extends CI_Controller {
+
+
+	public function resizeImage($dir, $ext, $name, $w, $h){
+		$this->image_lib->clear();
+		$info = getimagesize($dir . $ext);
+		$config['source_image']   = $dir . $ext;
+		$config['new_image']      = $dir . '_' . $name . $ext;
+		$config['maintain_ratio'] = true;
+		$config['create_thumb']   = false;
+		if($info[0]/$info[1] > $w / $h)
+			$config['height'] = $h;
+		else
+			$config['width']  = $w;
+		$this->image_lib->initialize($config);
+		$this->image_lib->resize();
+
+		$this->image_lib->clear();
+		$info = getimagesize($dir . '_' . $name . $ext);
+		$config['source_image']   = $dir . '_' . $name . $ext;
+		$config['create_thumb']   = false;
+		$config['maintain_ratio'] = false;
+		$config['width']          = $w;
+		$config['height']         = $h;
+		if($info[0]>$info[1])
+			$config['x_axis'] = floor(($info[0] - $w)/2);
+		else
+			$config['y_axis'] = floor(($info[1] - $h)/2);
+		$this->image_lib->initialize($config);
+		$this->image_lib->crop();
+	}
+
+	private function upload( $sqlData, $id = null, $fileData = null ){
+		if ( $id === null ) {
+			$config['upload_path'] = '../public/assets/uploads/blog';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['file_name'] = 'temp';
+			$config['file_ext_tolower'] = true;
+			$config['max_size'] = '2048';
+
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('myFile')) {
+				$this->session->set_flashdata('error', array('error' => $this->upload->display_errors()));
+				return false;
+			}
+			return $this->upload->data();
+		}
+		else
+		{
+			$dir = dirname($fileData['full_path']) . '/' . $id . '_';
+			rename($fileData['full_path'], $dir . $fileData['file_ext']);
+
+			$this->load->library('image_lib');
+
+			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 80, 80);
+		}
+	}
+
+
 	public function index()
 	{
 

@@ -44,6 +44,10 @@ $this->load->view('admins/include/header');
                             <textarea class="form-control" id="welcome_msg" name="welcome_msg"><?= $this->sitesetting->getValue('welcome_msg'); ?></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="subscribe_msg">Subscribe Message</label>
+                            <textarea class="form-control" id="subscribe_msg" name="subscribe_msg"><?= $this->sitesetting->getValue('subscribe_msg'); ?></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="contact_text">Contact Message</label>
                             <textarea class="form-control" id="contact_text" name="contact_text"><?= $this->sitesetting->getValue('contact_text'); ?></textarea>
                             <p class="help-block">

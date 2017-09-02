@@ -33,8 +33,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="<?php echo base_url('home');?>">Home
+            <li class="nav-item <?= ($this->currentRoute) ? '' : 'active'; ?>">
+              <a class="nav-link" href="<?php echo base_url();?>">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
