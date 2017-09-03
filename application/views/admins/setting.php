@@ -59,7 +59,7 @@ $this->load->view('admins/include/header');
                             <input type="text" class="form-control" id="contact_email" name="contact_email"
                                    value="<?= $this->sitesetting->getValue('contact_email'); ?>">
                             <p class="help-block">
-                                Here you can define an email address which you want send an email if user submit contact form
+                                Here you can define an email which you want receive an email if user submit contact form
                             </p>
                         </div>
                         <div class="form-group">

@@ -19,7 +19,7 @@ $this->load->view('visitor/include/header');
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
             <?php $attributes = array("class" => "form-horizontal", "name" => "contactform");
-            echo form_open("contact_form", $attributes);?>
+            echo form_open("contact", $attributes);?>
             <fieldset>
             <legend>Contact Form</legend>
             <div class="form-group">

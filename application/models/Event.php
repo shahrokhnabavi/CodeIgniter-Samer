@@ -65,45 +65,4 @@ class Event extends CI_Model {
         $this->db->update($this->tbl, $record, $where);
         return $msg;
     }
-
-
-
-
-
-
-
-
-
-
-
-    public function list_of_post()
-    {
-
-        $sql = "SELECT id, title, content, startdate, enddate FROM content ORDER BY id DESC";
-
-        return $this->db->query( $sql)->result_array();
-    }
-    public function delete( $id )
-    {
-        $data = array(
-            'id' => $id
-        );
-        $this->db->delete($this->tbl, $data);
-    }
-    public function find_content($id)
-    {
-        $query = $this->db->select(['id', 'title', 'content', 'startdate', 'enddate'])
-            ->where('id',$id)
-            ->get('content');
-        return $query->row();
-    }
-    public function content_home( $limit = 3 )
-    {
-        if( $limit === 0 )
-            $sql = "SELECT * FROM content ORDER BY id desc;";
-        else
-            $sql = "SELECT * FROM content ORDER BY id desc LIMIT {$limit};";
-
-        return $this->db->query( $sql)->result_array();
-    }
 }
