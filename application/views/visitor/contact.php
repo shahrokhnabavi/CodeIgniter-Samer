@@ -21,7 +21,7 @@ $this->load->view('visitor/include/header');
             <?php $attributes = array("class" => "form-horizontal", "name" => "contactform");
             echo form_open("contact", $attributes);?>
             <fieldset>
-            <legend>Contact Form</legend>
+            <legend>Contact Form [Test]</legend>
             <div class="form-group">
                 <div class="col-md-12">
                     <label for="name" class="control-label">Name</label>
@@ -63,7 +63,6 @@ $this->load->view('visitor/include/header');
             </fieldset>
             <?php echo form_close(); ?>
             <?php echo $this->session->flashdata('msg'); ?>
-
           </div>
 
           <div class="col-md-6 col-md-offset-3 well">
@@ -71,6 +70,9 @@ $this->load->view('visitor/include/header');
         </div>
     </div>
     </div>
+
+
+Here we are.
 
     <!-- /.container -->
 
