@@ -13,7 +13,7 @@
     <script src="<?php echo base_url('assets/vendor/popper/popper.min.js');?>"></script>
     <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.min.js');?>"></script>
     <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDjHBCwsWpXfD4h0uZKrDArdA0bANVJCxk"></script>
     <script src="<?php echo base_url('assets/js/googlemap.js');?>"></script>
 
   </body>

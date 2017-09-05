@@ -70,10 +70,6 @@ $this->load->view('visitor/include/header');
         </div>
     </div>
     </div>
-
-
-Here we are.
-
     <!-- /.container -->
 
 <?php
