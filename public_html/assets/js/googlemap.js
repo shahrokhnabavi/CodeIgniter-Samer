@@ -16,4 +16,4 @@ function init_map() {
     var_marker.setMap(var_map);
 }
 
-// google.maps.event.addDomListener(window, 'load', init_map);
+google.maps.event.addDomListener(window, 'load', init_map);
