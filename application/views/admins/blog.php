@@ -35,7 +35,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                             if( isset($update['id']) ) {
                                 $name = glob(FCPATH . 'assets/uploads/blog/' . $update['id'] . '_thumb.*');
                                 if( $name )
-                                    echo '<img class="img-thumbnail" src="' . base_url('assets/uploads/event/' . basename($name[0]) ) . '" />';
+                                    echo '<img class="img-thumbnail" src="' . base_url('assets/uploads/blog/' . basename($name[0]) ) . '" />';
                             }
                             ?>
                         </div>
