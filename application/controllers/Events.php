@@ -40,7 +40,7 @@ class Events extends CI_Controller
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = './assets/uploads/event';
+			$config['upload_path'] = '../public_html/assets/uploads/event';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['file_name'] = 'temp';
 			$config['file_ext_tolower'] = true;
@@ -78,7 +78,7 @@ class Events extends CI_Controller
 			array(
 				'field' => 'title',
 				'label' => 'Title',
-				'rules' => 'trim|required|min_length[6]|max_length[255]|regex_match[/^[a-zA-Z ]+$/]'
+				'rules' => 'trim|required|min_length[6]|max_length[255]|regex_match[/^[a-zA-Z0-9 ]+$/]'
 			),
 			array(
 				'field' => 'content',

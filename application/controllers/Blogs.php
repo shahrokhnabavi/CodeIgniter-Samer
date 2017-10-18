@@ -45,7 +45,7 @@ class Blogs extends CI_Controller
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = '../public/assets/uploads/blog';
+			$config['upload_path'] = '../public_html/assets/uploads/blog';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['file_name'] = 'temp';
 			$config['file_ext_tolower'] = true;

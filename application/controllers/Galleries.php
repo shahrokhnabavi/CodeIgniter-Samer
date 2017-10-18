@@ -75,7 +75,7 @@ class Galleries extends CI_Controller
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = '../public/assets/uploads/';
+			$config['upload_path'] = '../public_html/assets/uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['file_name'] = 'temp' . $sqlData['file_name'];
 			$config['file_ext_tolower'] = true;
@@ -112,7 +112,7 @@ class Galleries extends CI_Controller
 			array(
 				'field' => 'name',
 				'label' => 'Image Name',
-				'rules' => 'trim|required|regex_match[/^[a-zA-Z ]+$/]'
+				'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9 ]+$/]'
 			)
 		);
 		$this->form_validation->set_rules($validation);
