@@ -15,6 +15,9 @@ $route['admin/logout']    = 'admins/logout';
 $route['admin/user([0-9]*|[0-9]*/[0-9]*)'] = 'admins/form/$1/$2';
 $route['admin/delete-user/([0-9]*)']       = 'admins/delete/$1';
 
+$route['admin/blog([0-9]*|[0-9]*/[0-9]*)'] = 'blogs/form/$1/$2';
+$route['admin/delete-blog/([0-9]*)']       = 'blogs/delete/$1';
+
 $route['admin/gallery([0-9]*|[0-9]*/[0-9]*)'] = 'galleries/form/$1/$2';
 $route['admin/delete-gallery/([0-9]*)']       = 'galleries/delete/$1';
 $route['thumb-gallery/([0-9]*)']  = 'galleries/thumbImage/$1';
@@ -32,7 +35,7 @@ $route['admin/content_update']      = 'post/update';
 $route['default_controller'] = 'front_end';
 $route['home'] = 'front_end';
 $route['gallery'] = 'front_end/gallery';
-$route['about'] = 'front_end/about';
+$route['events'] = 'front_end/events';
 $route['subscribe'] = 'subscribe/add_member';
 $route['contact'] = 'front_end/contact';
 $route['contact_form'] = 'contactform';

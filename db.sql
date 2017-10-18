@@ -1,31 +1,9 @@
-﻿CREATE DATABASE  IF NOT EXISTS `impact` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `impact`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: impact
--- ------------------------------------------------------
--- Server version	5.6.21
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `admins`
---
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2017 at 10:03 AM
+-- Generation Time: Sep 01, 2017 at 03:19 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -35,6 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `impact`
 --
+CREATE DATABASE IF NOT EXISTS `impact` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `impact`;
 
 -- --------------------------------------------------------
 
@@ -42,6 +22,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
 `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -49,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `email` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admins`
@@ -70,28 +51,58 @@ INSERT INTO `admins` (`id`, `name`, `password`, `email`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Table structure for table `blogs`
 --
 
-CREATE TABLE IF NOT EXISTS `content` (
+DROP TABLE IF EXISTS `blogs`;
+CREATE TABLE IF NOT EXISTS `blogs` (
 `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text,
   `slug` varchar(255) DEFAULT NULL,
   `description` text,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `admin_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `title`, `content`, `slug`, `description`, `created_at`, `updated_at`, `admin_id`) VALUES
+(7, 'Taakstraf geëist tegen oud', 'Volgens de aanklager heeft Linschoten ''''op kosten van de samenleving" jarenlang boven zijn stand geleefd. ''''In plaats van belasting af te dragen, bedeelde hij zichzelf en zijn echtgenote van een royaal inkomen", zei ze. ''''Zijn portemonnee was belangrijker dan het meebetalen aan publieke voorzieningen."\r\n\r\nDe aanklager vond dat Linschoten ervan doordrongen had moeten zijn dat hij een voorbeeldfunctie had en heeft. ''''Waarom zou een ondernemer zich aan allerlei verplichtingen houden als een voormalig staatssecretaris dat niet doet?"\r\n\r\nLinschoten zou de staat tussen 2010 en eind 2012 voor ruim honderdduizend euro hebben benadeeld door te weinig omzetbelasting af te dragen.\r\n\r\nVolgens de aanklager kreeg de voormalige VVD-politicus over die jaren keer op keer signalen van zijn boekhoudkantoor dat hij stukken moest opsturen, maar negeerde hij die volkomen. ''''Hij vertrouwde op de professionaliteit van zijn boekhoudkantoor, zegt hij. Maar als het kantoor zo professioneel was, waarom nam hij het dan niet serieus?', 'asasfa', 'Voormalig VVD-politicus Robin Linschoten moet vanwege belastingfraude tweehonderd uur taakstraf en een voorwaardelijke gevangenisstraf krijgen van een half jaar.', '2017-09-01 14:29:51', '2017-09-01 14:29:51', 1),
+(8, 'OM eist 25 jaar tegen verdachte', 'Dit is bekendgemaakt tijdens de inhoudelijke behandeling van de zaak op vrijdag. \r\n\r\nSurailie I. werd in 2015 opgepakt voor de liquidatie, die twee jaar eerder plaatsvond. Bij de schietpartij tijdens het dancefeest kwam de 26-jarige Souhail Laachir om het leven.\r\n\r\nLaachir, volgens Het Parool gezien als de financiële man van veroordeelde crimineel Benaouf A., zou volgens getuigen ten midden van feestvierende mensen ruzie hebben gekregen met de verdachte. I. wordt op zijn beurt gelieerd aan het gezelschap van de in 2014 geliquideerde crimineel Gwenette Martha, een rivaal van A.\r\n\r\nHiermee kan het doodschieten van Laachir worden gezien als onderdeel van de liquidatiegolf in de onderwereld van Amsterdam. \r\n\r\nStrafeis\r\nHet OM heeft in de strafeis meegenomen dat er sprake is van een afrekening in het criminele circuit. Ook het risico voor de feestgangers vond de Officier van Justitie motivering om 25 jaar te eisen. Ten tijde van de liquidatie waren bijna duizend mensen aanwezig. \r\n\r\nToen agenten na meldingen over meerdere schoten arriveerden bij het Scheepvaartmuseum, lag het slachtoffer bloedend op de grond. Later overleed hij aan zijn verwondingen.', 'slasla', 'Het Openbaar Ministerie (OM) heeft 25 jaar cel geëist tegen de verdachte van een liquidatie tijdens het Amsterdamse dancefeest Waterfront in het Scheepvaartmuseum.', '2017-09-01 14:31:31', '2017-09-01 14:31:31', 1),
+(9, 'Acht jaar cel voor vrouw die partner', 'Ze heeft hem juni vorig jaar in bed in zijn hals gestoken. Daarna probeerde de moeder van vijf kinderen zichzelf te doden met dertig messteken. De kinderen waren op dat moment ook in het huis aanwezig.\r\n\r\nVan der Heijden liep negen steekwonden op. Hij strompelde zwaargewond naar zijn moeder, vier deuren verderop. Hij haalde dat net, maar reanimatie hielp niet meer. De twee hadden de avond voor de steekpartij ruzie met elkaar gehad.\r\n\r\nBinnen het gezin speelden al jaren problemen, mede veroorzaakt door de drugshandel van de man. N. was het hier niet mee eens, maar vond het ook wel ''makkelijk geld'', zei ze tijdens de behandeling van de zaak. Ze gaf aan zich weinig van de bewuste avond te herinneren.\r\n\r\nMoederrol\r\nHet Openbaar Ministerie had tien jaar cel tegen de vrouw geëist. Dat de straf lager uitvalt, heeft volgens de rechtbank te maken met de "lange periode van angst, vernedering en wanhoop bij de verdachte die aan het delict vooraf ging".\r\n\r\nOok houdt de rechtbank er rekening mee dat het wenselijk is dat de vrouw zo snel mogelijk haar moederrol weer inneemt. De kinderen, tussen tien en vijftien jaar oud, hopen dat hun moeder vrijkomt, zo schreven ze in brieven aan de rechter.', 'toli', 'De Bossche Sandra N. (39) is tot acht jaar cel veroordeeld door de rechtbank in Den Bosch voor het doodsteken van haar partner Selim van der Heijden (39).', '2017-09-01 14:33:02', '2017-09-01 14:33:02', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content`
+--
+
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE IF NOT EXISTS `content` (
+`id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `startdate` varchar(255) DEFAULT NULL,
+  `enddate` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `admin_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`id`, `title`, `content`, `slug`, `description`, `created_at`, `updated_at`, `admin_id`) VALUES
-(3, 'The Night Way', 'This is the content of my content for this perpose jhgfd', 'the-night-way', 'This is a short description about how this content will work hg', '2017-08-31 15:09:19', '2017-08-31 15:09:19', 1),
-(4, 'Ring A10 West bij Amsterdam zaterdag al open', 'Rijkswaterstaat laat weten dat bij het plannen van de werkzaamheden extra tijd was uitgetrokken voor eventuele tegenvallers. Maar die zijn er nauwelijks geweest. "Het werk verliep soepel en het weer zat mee'''', aldus een woordvoerder. \r\n\r\nDe afgelopen zes weken is asfalt weggefreesd en opnieuw aangebracht en is nieuwe belijning getrokken. Verder zijn de bestrating in de bermen en de matrixborden vervangen en is de regenwaterafvoer verbeterd.', 'Ring-A10', 'Het verkeer kan vanaf zaterdagmorgen vroeg weer in beide richtingen gebruikmaken van de A10 West bij Amsterdam. Dat is twee dagen eerder dan gepland.', '2017-08-31 14:16:31', '2017-08-31 14:16:31', 1),
-(5, 'Transportbedrijf Brinkman krijgt deurwaarder over de vloer', 'De drie medewerkers, allen chauffeur en FNV-lid, zijn volgens FNV meerdere keren onterecht ontslagen bij het bedrijf. De rechter heeft dit besluit teruggefloten. Twee chauffeurs werken volgens de FNV nog bij het bedrijf en de ander heeft een ontbonden contract.\r\n\r\nDoor het ontslag zouden de medewerkers volgens de vakbond inkomsten zijn misgelopen. De rechtbank bepaalde eerder dit jaar al dat het vervoersbedrijf met terugwerkende kracht loon moet betalen.\r\n\r\nFacebook\r\nDe redenen voor de ontslagen lopen uiteen. Zo zou een medewerker volgens de vakbond zijn ontslagen nadat deze het op Facebook had opgenomen voor de vakbond. Ook stelt de FNV dat een medewerker ontslagen is omdat deze verdacht werd van geweld, wat volgens FNV-medewerker Edwin Atema berust op een "fabel".\r\n\r\nEen ander ontslag zou volgens Atema zijn veroorzaakt doordat een medewerker zich niet zou hebben gehouden aan de rijrusttijden, terwijl dit bedrijfsbeleid is.\r\n\r\nEerdere pogingen\r\nDe FNV stelt dat de afgelopen maanden meerdere malen is gepoogd beslag te leggen op rekeningen van de Drentse onderneming. Dit zou echter te weinig hebben opgeleverd. "Het kan zijn dat het bedrijf klanten heeft gevraagd transacties op een andere rekening over te maken."\r\n\r\nDe deurwaarder begint volgens FNV om 14:00 uur ''s middags met de beslaglegging in Emmen. Sinds 13:30 uur deze middag zouden sympathisanten zich verzamelen voor het bedrijfsgebouw. Atema: "Wij hebben geadviseerd om te zoeken naar auto’s, heftrucks en computers. Maar hierover beslist de deurwaarder."\r\n\r\nDe FNV won eerder dit jaar ook een zaak tegen Brinkman Trans Holland over cao-lonen en arbeidsomstandigheden van Poolse en Moldavische chauffeurs. De vakbond dwong toen af dat het vervoersbedrijf deze medewerkers Nederlandse cao-lonen moest betalen en dat het bedrijf deze chauffeurs niet in hun truck moest laten overnachten.\r\n\r\nBrinkman Trans Holland wil geen commentaar geven over deze kwestie.', 'trans-parent', 'IKEA-transporteur Brinkman Trans Holland krijgt vanmiddag een deurwaarder met politiebegeleiding over de vloer. Deze zou volgens vakbond FNV voor 100.000 euro aan natura beslag moeten leggen.', '2017-08-31 14:34:03', '2017-08-31 14:34:03', 1);
+INSERT INTO `content` (`id`, `title`, `content`, `startdate`, `enddate`, `created_at`, `updated_at`, `admin_id`) VALUES
+(3, 'The Night Way', 'This is the content of my content for this perpose jhgfd', '1/1/2000', '10/10/200', '2017-08-31 15:09:19', '2017-08-31 15:09:19', 1),
+(4, 'perspiciatis', 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi', '2017-01-31', '2015-10-29', '2017-09-01 11:31:18', '2017-09-01 11:31:18', 1),
+(14, 'typography', 'orem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It''s also called placeholder (or filler) text. It''s a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it''s not genuiorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It''s also called placeholder (or filler) text. It''s a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it''s not genui', '2017-01-01', '2017-01-01', '2017-09-01 10:31:35', '2017-09-01 10:31:35', 1),
+(15, 'Sheril', 'orem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It''s also called placeholder (or filler) text. It''s a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it''s not genui', '2017-01-01', '2017-12-31', '2017-09-01 11:26:36', '2017-09-01 11:26:36', 1),
+(16, 'validation', 'unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi', '2017-01-01', '2017-02-01', '2017-09-01 12:09:55', '2017-09-01 12:09:55', 1);
 
 -- --------------------------------------------------------
 
@@ -99,6 +110,7 @@ INSERT INTO `content` (`id`, `title`, `content`, `slug`, `description`, `created
 -- Table structure for table `gallery`
 --
 
+DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE IF NOT EXISTS `gallery` (
 `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -116,8 +128,7 @@ INSERT INTO `gallery` (`id`, `name`, `file_name`, `created_at`, `updated_at`, `a
 (90, 'Delk en Boot', 'WczFCqMJ', '2017-08-31 01:57:01', '2017-09-01 06:04:36', 1),
 (91, 'Family', 'BUGO2qxn', '2017-08-31 01:57:57', '2017-09-01 05:37:28', 1),
 (109, 'Fantastic', 'Mt92bqRY', '2017-09-01 05:30:37', '2017-09-01 05:32:35', 1),
-(110, 'Backgrond', 'iE3528XQ', '2017-09-01 05:31:43', '2017-09-01 05:31:43', 1),
-(111, 'test', 'R0P2dx1h', '2017-09-01 06:31:54', '2017-09-01 06:31:54', 1);
+(110, 'Backgrond', 'iE3528XQ', '2017-09-01 05:31:43', '2017-09-01 05:31:43', 1);
 
 -- --------------------------------------------------------
 
@@ -125,6 +136,7 @@ INSERT INTO `gallery` (`id`, `name`, `file_name`, `created_at`, `updated_at`, `a
 -- Table structure for table `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
 `id` bigint(20) NOT NULL,
   `key` varchar(64) DEFAULT NULL,
@@ -154,12 +166,13 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `subscription`
 --
 
+DROP TABLE IF EXISTS `subscription`;
 CREATE TABLE IF NOT EXISTS `subscription` (
 `id` int(11) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subscription`
@@ -169,7 +182,8 @@ INSERT INTO `subscription` (`id`, `email`, `created_at`, `updated_at`) VALUES
 (2, 'shahrokh@yahoo.com', '2017-08-31 11:34:41', '2017-08-31 11:34:41'),
 (3, 'mina@ymail.com', '2017-08-31 11:34:41', '2017-08-31 11:34:41'),
 (4, 'nazanin@gmail.com', '2017-08-31 11:34:41', '2017-08-31 11:34:41'),
-(7, 'sima@yahoo.com', '2017-09-01 09:13:27', '2017-09-01 09:13:27');
+(7, 'sima@yahoo.com', '2017-09-01 09:13:27', '2017-09-01 09:13:27'),
+(8, 'sima@me.com', '2017-09-01 14:35:52', '2017-09-01 14:35:52');
 
 --
 -- Indexes for dumped tables
@@ -180,6 +194,12 @@ INSERT INTO `subscription` (`id`, `email`, `created_at`, `updated_at`) VALUES
 --
 ALTER TABLE `admins`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_content_admin_idx` (`admin_id`);
 
 --
 -- Indexes for table `content`
@@ -213,12 +233,17 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `gallery`
 --
@@ -233,7 +258,7 @@ MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 -- AUTO_INCREMENT for table `subscription`
 --
 ALTER TABLE `subscription`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

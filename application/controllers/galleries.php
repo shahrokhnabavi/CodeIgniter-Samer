@@ -204,7 +204,7 @@ class Galleries extends CI_Controller
 	private function deleteFiles( $id ){
 		$record = $this->gallery->getRecordById( $id );
 
-		$files = realpath(FCPATH . '../uploads') . '/' . $id . '-' . $record['file_name'] . '*';
+		$files = realpath(FCPATH . 'assets/uploads') . '/' . $id . '-' . $record['file_name'] . '*';
 		foreach( glob($files) as $file ){
 			unlink($file);
 		}

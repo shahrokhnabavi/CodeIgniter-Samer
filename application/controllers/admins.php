@@ -12,7 +12,7 @@ class Admins extends CI_Controller
 		parent::__construct();
 	}
 
-	
+
 	public function login()
 	{
 		$this->user->loggedIn('admin/dashboard');
@@ -28,7 +28,7 @@ class Admins extends CI_Controller
 				'label' => 'Password',
 				'rules' => 'trim|required|min_length[6]|max_length[16]'
 			)
-		);
+		);//shah@email.com
 		$this->form_validation->set_rules($validation);
 
 		if( $this->form_validation->run() === true )
@@ -36,8 +36,8 @@ class Admins extends CI_Controller
 			$result = $this->user->getUserByEmail( $this->input->post('email',true) );
 			if( $result )
 			{
-				$passwd = $this->password( $this->input->post('passwd') );
-				
+				$passwd = $this->password( $this->input->post('password') );
+
 				if( $passwd === $result['password'] )
 				{
 					$this->session->set_userdata('cUser', $result['id']);

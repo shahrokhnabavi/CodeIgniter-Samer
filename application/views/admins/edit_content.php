@@ -17,30 +17,30 @@ $administrator_id = $this->session->userdata('cUser');
         </div>
     </div>
 
-
-    <div class="container-fluid">
+<div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal" action="<?php echo base_url('admin/content_update');?>" method="post">
+                <form class="form-horizontal" action="<?php echo base_url('admin/content_update/');?>" method="post">
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input type="text" class="form-control" id="name" name="title"
-                               value="<?=set_value('title',$content->title);?>">
+                        <label for="title">Event</label>
+                        <input type="text" class="form-control" id="title" name="title"
+                               value="<?=set_value('title', $content->title);?>">
                     </div>
-                    <div class="form-group">
-                        <label for="name">Description</label>
-                        <textarea type="text" class="form-control" id="name" name="description"><?=set_value('description', $content->description);?></textarea>
-                    </div>
-
                     <div class="form-group">
                         <label for="name">Content</label>
-                        <textarea type="text" class="form-control" id="name" name="content"><?=set_value('content', $content->content);?></textarea>
+                        <textarea type="text" class="form-control" id="name" name="content">
+                        <?php echo set_value('content', $content->content);?>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Start Date</label>
+                        <input type="date" name="start" class="form-control" value="<?=set_value('title', $content->startdate);?>">
+                        
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Slug</label>
-                        <input type="text" class="form-control" id="name" name="slug"
-                               value="<?=set_value('slug',$content->slug);?>">
+                        <label for="name">End Date</label>
+                        <input type="date" name="end" class="form-control" value="<?=set_value('title', $content->startdate);?>">
                     </div>
 
                     <input type="hidden" name="action_id" value="<?= $administrator_id; ?>">
@@ -54,6 +54,8 @@ $administrator_id = $this->session->userdata('cUser');
             </div>
         </div>
     </div>
+
+   
 
 </div>
 <?php
