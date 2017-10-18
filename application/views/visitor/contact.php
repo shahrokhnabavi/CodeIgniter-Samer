@@ -70,7 +70,7 @@ $this->load->view('visitor/include/header');
           <div id="map"></div>
         </div>
     </div>
-    </div>
+</div>
 
     <!-- /.container -->
 
