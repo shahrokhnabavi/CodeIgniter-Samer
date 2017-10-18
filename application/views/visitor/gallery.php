@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('users/include/header');
+$this->load->view('visitor/include/header');
 ?>
 
     <!-- Page Content -->
     <div class="container">
-<br>
+        <br>
       <h1 class="my-4 text-center text-lg-left">Gallery</h1>
 
       <div class="row text-center text-lg-left">
@@ -25,4 +25,4 @@ foreach( $listGallery as $img ) {
       </div>
     </div>
 <?php
-$this->load->view('users/include/footer');
+$this->load->view('visitor/include/footer');

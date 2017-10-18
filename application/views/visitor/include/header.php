@@ -33,22 +33,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD:application/views/users/include/header.php
             <li class="nav-item active">
               <a class="nav-link" href="<?php echo base_url('home');?>">Home
                 <span class="sr-only">(current)</span>
               </a>
+=======
+            <li class="nav-item <?= ($this->currentRoute) ? '' : 'active'; ?>">
+              <a class="nav-link" href="<?php echo base_url();?>">Home</a>
+>>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/visitor/include/header.php
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= ($this->currentRoute === 'gallery') ? 'active' : ''; ?>">
               <a class="nav-link" href="<?php echo base_url('gallery');?>">Gallery</a>
             </li>
             <li class="nav-item">
+<<<<<<< HEAD:application/views/users/include/header.php
             <a class="logo" href="#">
               <img id="logo-navbar-middle" src="<?= base_url('/' . $this->sitesetting->getValue('site_logo') );?>" width="100" alt=""></a>
             </li>
             <li class="nav-item">
+=======
+            <a class="logo">
+              <img id="logo-navbar-middle" src="<?= base_url('/' . $this->sitesetting->getValue('site_logo') );?>" width="100" alt=""></a>
+            </li>
+            <li class="nav-item <?= ($this->currentRoute === 'events') ? 'active' : ''; ?>">
+>>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/visitor/include/header.php
               <a class="nav-link" href="<?php echo base_url('events');?>">Events</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= ($this->currentRoute === 'contact') ? 'active' : ''; ?>">
               <a class="nav-link" href="<?php echo base_url('contact');?>">Contact</a>
             </li>
           </ul>

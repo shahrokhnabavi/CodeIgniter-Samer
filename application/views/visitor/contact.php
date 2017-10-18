@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('users/include/header')
+$this->load->view('visitor/include/header');
 ?>
 
     <!-- Page Content -->
@@ -19,9 +19,9 @@ $this->load->view('users/include/header')
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
             <?php $attributes = array("class" => "form-horizontal", "name" => "contactform");
-            echo form_open("contact_form", $attributes);?>
+            echo form_open("contact", $attributes);?>
             <fieldset>
-            <legend>Contact Form</legend>
+            <legend>Contact Form [Test]</legend>
             <div class="form-group">
                 <div class="col-md-12">
                     <label for="name" class="control-label">Name</label>
@@ -63,7 +63,10 @@ $this->load->view('users/include/header')
             </fieldset>
             <?php echo form_close(); ?>
             <?php echo $this->session->flashdata('msg'); ?>
+<<<<<<< HEAD:application/views/users/contact.php
 
+=======
+>>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/visitor/contact.php
           </div>
 
           <div class="col-md-6 col-md-offset-3 well">
@@ -71,9 +74,16 @@ $this->load->view('users/include/header')
         </div>
     </div>
     </div>
+<<<<<<< HEAD:application/views/users/contact.php
 
     <!-- /.container -->
 
 <?php
 $this->load->view('users/include/footer')
 ?>
+=======
+    <!-- /.container -->
+
+<?php
+$this->load->view('visitor/include/footer');
+>>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/visitor/contact.php

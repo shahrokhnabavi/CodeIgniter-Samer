@@ -6,7 +6,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admins extends CI_Controller
+class Users extends CI_Controller
 {
 	public function __construct(){
 		parent::__construct();
@@ -37,11 +37,15 @@ class Admins extends CI_Controller
 			if( $result )
 			{
 				$passwd = $this->password( $this->input->post('password') );
+<<<<<<< HEAD:application/controllers/admins.php
 
+=======
+>>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/controllers/Users.php
 				if( $passwd === $result['password'] )
 				{
 					$this->session->set_userdata('cUser', $result['id']);
 					redirect('admin/dashboard');
+					die();
 				}
 				else
 					$this->session->set_flashdata( 'error', 'The password does not match.' );

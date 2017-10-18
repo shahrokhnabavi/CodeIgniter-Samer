@@ -50,3 +50,8 @@ footer {
   -o-border-radius: 10px;
   border-radius: 10px;
 }
+
+.form-group .photo-input-file,
+.form-group .input-file{
+  display: inline-block;
+}

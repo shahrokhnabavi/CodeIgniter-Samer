@@ -190,7 +190,7 @@ class Galleries extends CI_Controller
 	 * @param $id
 	 */
 	public function delete( $id ){
-		$this->user->loggedIn('login', false);
+		$this->user->loggedIn('admin', false);
 
 		if( !is_numeric($id) )
 			show_error('[' . __CLASS__ . ']: The type of parameter is not valid. Error is on line ' . __LINE__ );

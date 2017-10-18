@@ -16,6 +16,7 @@ class Blog extends CI_Model
     }
 
 
+<<<<<<< HEAD
 
     public function getRecordById( $id ){
         if( !is_numeric($id) )
@@ -31,6 +32,10 @@ class Blog extends CI_Model
 
     public function add( $user, $msg = '' ){
         $this->db->insert( $this->tbl, $user);
+=======
+    public function add( $data, $msg = '' ){
+        $this->db->insert( $this->tbl, $data);
+>>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf
 
         if ( $msg === '' )
             return $this->db->insert_id();

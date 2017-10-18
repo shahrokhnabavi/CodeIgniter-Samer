@@ -1,17 +1,12 @@
 <?php
-/**
- * Created Shahrokh Nabavi.
- * Date: 8/29/2017
- * Time: 9:45 AM
- */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Blogs extends CI_Controller
+class Events extends CI_Controller
 {
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->model('blog');
+		$this->load->model('event');
 	}
 
 	public function resizeImage($dir, $ext, $name, $w, $h){
@@ -45,7 +40,7 @@ class Blogs extends CI_Controller
 
 	private function upload( $sqlData, $id = null, $fileData = null ){
 		if ( $id === null ) {
-			$config['upload_path'] = '../public/assets/uploads/blog';
+			$config['upload_path'] = './assets/uploads/event';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['file_name'] = 'temp';
 			$config['file_ext_tolower'] = true;
@@ -66,8 +61,10 @@ class Blogs extends CI_Controller
 			$this->load->library('image_lib');
 
 			$this->resizeImage( $dir, $fileData['file_ext'], 'thumb', 80, 80);
+			$this->resizeImage( $dir, $fileData['file_ext'], '348X232', 348, 232);
 		}
 	}
+
 
 	/**
 	 * @param $page
@@ -81,12 +78,7 @@ class Blogs extends CI_Controller
 			array(
 				'field' => 'title',
 				'label' => 'Title',
-				'rules' => 'trim|required|min_length[6]|max_length[255]|regex_match[/^[a-zA-Z0-9 ]+$/]'
-			),
-			array(
-				'field' => 'description',
-				'label' => 'Description',
-				'rules' => 'trim|required|min_length[20]|max_length[255]'
+				'rules' => 'trim|required|min_length[6]|max_length[255]|regex_match[/^[a-zA-Z ]+$/]'
 			),
 			array(
 				'field' => 'content',
@@ -94,20 +86,26 @@ class Blogs extends CI_Controller
 				'rules' => 'trim|required|min_length[50]'
 			),
 			array(
-				'field' => 'slug',
-				'label' => 'Slug',
-				'rules' => 'trim|required|min_length[2]|max_length[20]|regex_match[/^[a-zA-Z\-]+$/]'
+				'field' => 'start',
+				'label' => 'Start Date',
+				'rules' => 'trim|required'
+			),
+			array(
+				'field' => 'end',
+				'label' => 'End Date',
+				'rules' => 'trim|required'
 			)
 		);
 		$this->form_validation->set_rules($validation);
 
 
 		if( $this->form_validation->run() === true ) {
+
 			$sqlData = array(
-				'title' => $this->input->post('title', TRUE),
-				'content' => $this->input->post('content', TRUE),
-				'slug' => $this->input->post('slug', TRUE),
-				'description' => $this->input->post('description', TRUE),
+				'title'     => $this->input->post('title', TRUE),
+				'content'   => $this->input->post('content', TRUE),
+				'startdate' => $this->input->post('start', TRUE),
+				'enddate'   => $this->input->post('end', TRUE),
 				'admin_id'  => $this->user->cUser('id')
 			);
 
@@ -131,21 +129,21 @@ class Blogs extends CI_Controller
 						$this->upload($sqlData, $id, $fileData);
 					}
 
-					$this->blog->edit($sqlData, ['id' => $id]);
+					$this->event->edit($sqlData, ['id' => $id]);
 
 					$this->session->set_flashdata('msg-success', 'Your blog post is <b>UPDATED</b> successfuly.');
-					redirect('admin/blog');
+					redirect('admin/event');
 				}
 			}
 			else
 			{
 				if( $fileData = $this->upload( $sqlData ) and $fileData !== false ) {
-					$id = $this->blog->add($sqlData);
+					$id = $this->event->add($sqlData);
 
 					$this->upload($sqlData, $id, $fileData);
 
 					$this->session->set_flashdata('msg-success', 'Your blog post is <b>ADDED</b> successfuly.');
-					redirect('admin/blog');
+					redirect('admin/event');
 				}
 			}
 		}
@@ -153,19 +151,20 @@ class Blogs extends CI_Controller
 		$id = (int) $id;
 		$pg = array(
 			'cPageNumbr' => (int) $page,
-			'count'		 => $this->blog->count(),
+			'count'		 => $this->event->count(),
 			'perPage'	 => 10
 		);
 
 		$data = array(
-			'currentPageName'  => 'Blog',
-			'currentPageIcon'  => 'pushpin',
-			'list'   	 => $this->blog->getAll( $pg['perPage'], $pg['cPageNumbr'] ),
-			'update' 	 => $this->blog->getByField('id', (int) $id ),
+			'currentPageName'  => 'Events',
+			'currentPageIcon'  => 'tasks',
+			'list'   	 => $this->event->getAll( $pg['perPage'], $pg['cPageNumbr'] ),
+			'update' 	 => $this->event->getByField('id', (int) $id ),
 			'paginating' => $pg
 		);
-		$this->load->view('admins/blog', $data);
+		$this->load->view('admins/event', $data);
 	}
+
 
 	/**
 	 * Type: Page
@@ -181,12 +180,12 @@ class Blogs extends CI_Controller
 
 		$this->deleteFiles( $id );
 
-		$this->blog->delete($id );
-		redirect('admin/blog');
+		$this->event->delete($id );
+		redirect('admin/event');
 	}
 
 	private function deleteFiles( $id ){
-		$files = realpath(FCPATH . 'assets/uploads/blog') . '/' . $id . '_*';
+		$files = realpath(FCPATH . 'assets/uploads/event') . '/' . $id . '_*';
 		foreach( glob($files) as $file ){
 			unlink($file);
 		}

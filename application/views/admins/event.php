@@ -23,7 +23,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal" enctype="multipart/form-data"  action="<?= base_url('admin/blog' . (isset($update['id']) ? '/' . $update['id'] : '') ); ?>" method="post">
+                <form class="form-horizontal"  enctype="multipart/form-data" action=""<?= base_url('admin/event' . (isset($update['id']) ? '/' . $update['id'] : '') ); ?>" method="post">
                     <div class="form-group">
                         <label for="title">Event</label>
                         <input type="text" class="form-control" id="title" name="title"
@@ -33,7 +33,7 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                         <div class="photo-input-file">
                             <?php
                             if( isset($update['id']) ) {
-                                $name = glob(FCPATH . 'assets/uploads/blog/' . $update['id'] . '_thumb.*');
+                                $name = glob(FCPATH . 'assets/uploads/event/' . $update['id'] . '_thumb.*');
                                 if( $name )
                                     echo '<img class="img-thumbnail" src="' . base_url('assets/uploads/event/' . basename($name[0]) ) . '" />';
                             }
@@ -45,43 +45,28 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                         </div>
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD:application/views/admins/content.php
-=======
-                        <label for="name">Description</label>
-                        <textarea type="text" class="form-control" id="name" name="description"><?= set_value('description', isset($update['description']) ? $update['description'] : ''); ?></textarea>
+                        <label for="content">Content</label>
+                        <textarea type="text" class="form-control" id="content" name="content"
+                            ><?= set_value('content', isset($update['content']) ? $update['content'] : ''); ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="start">Start Date</label>
+                        <input type="date" name="start" class="form-control" id="start"
+                               value="<?= set_value('start', isset($update['startdate']) ? $update['startdate'] : ''); ?>">
                     </div>
 
                     <div class="form-group">
->>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/admins/blog.php
-                        <label for="name">Content</label>
-                        <textarea type="text" class="form-control" id="name" name="content"><?= set_value('content', isset($update['content']) ? $update['content'] : ''); ?></textarea>
+                        <label for="end">End Date</label>
+                        <input type="date" name="end" class="form-control" id="end"
+                               value="<?= set_value('end', isset($update['enddate']) ? $update['enddate'] : ''); ?>">
                     </div>
                     <div class="form-group">
-                        <label for="name">Start Date</label>
-                        <input type="date" name="start" class="form-control">
-                        <!-- <textarea type="text" class="form-control" id="name" name="start"><?=set_value('description');?></textarea> -->
-                    </div>
-
-                    <div class="form-group">
-<<<<<<< HEAD:application/views/admins/content.php
-                        <label for="name">End Date</label>
-                        <input type="date" name="end" class="form-control">
-                        <!-- <input type="text" class="form-control" id="name" name="end"
-                               value="<?=set_value('slug');?>"> -->
-=======
-                        <label for="name">Slug</label>
-                        <input type="text" class="form-control" id="name" name="slug"
-                               value="<?= set_value('slug', isset($update['slug']) ? $update['slug'] : ''); ?>">
->>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/admins/blog.php
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" value="Submit">Add/Update Blog</button>
+                        <button type="submit" class="btn btn-primary">Add/Update Event</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-12">
@@ -89,14 +74,10 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                 <thead>
                 <tr>
                     <th>#</th>
-<<<<<<< HEAD:application/views/admins/content.php
                     <th>Event</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-=======
-                    <th>Title</th>
                     <th>Image</th>
->>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/admins/blog.php
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -104,23 +85,20 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
 
                 <?php
                 foreach($list as $posting) {
-                    $name = glob(FCPATH . 'assets/uploads/blog/' . $posting['id'] . '_thumb.*');
-                    $link = $name ? basename($name[0]) : '';
+                    $name = glob(FCPATH . 'assets/uploads/event/' . $posting['id'] . '_thumb.*');
+                    $link = ($name) ? basename($name[0]) : '';
                     ?>
                     <tr>
                         <th scope="row"><?= ++$rowNumber; ?></th>
                         <td><?= $posting['title']; ?></td>
-<<<<<<< HEAD:application/views/admins/content.php
                         <td><?= $posting['startdate']; ?></td>
                         <td><?= $posting['enddate']; ?></td>
-=======
-                        <td><img src="<?= base_url('assets/uploads/blog/' . $link ); ?>" width="80"></td>
->>>>>>> 0f591fcadfcc882a90cb68d713c9716a67f38edf:application/views/admins/blog.php
+                        <td><img src="<?= base_url('assets/uploads/event/' . $link ); ?>" width="80"></td>
                         <td>
-                            <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/blog/' . $posting['id']); ?>">
+                            <a class="btn btn-warning btn-xs" href="<?= base_url( 'admin/event/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>Edit
                             </a>
-                            <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-blog/' . $posting['id']); ?>">
+                            <a class="btn btn-danger btn-xs" href="<?= base_url('admin/delete-event/' . $posting['id']); ?>">
                                 <i class="glyphicon glyphicon-trash"></i>Delete
                             </a>
                         </td>
@@ -128,11 +106,10 @@ $rowNumber = $paginating['perPage'] * $paginating['cPageNumbr']
                 <?php } ?>
                 </tbody>
             </table>
-            <?php $this->load->view('admins/include/paginating', ['page' => 'admin/blog']); ?>
+            <?php $this->load->view('admins/include/paginating', ['page' => 'admin/event']); ?>
         </div>
     </div>
 
 </div>
-
 <?php
 $this->load->view('admins/include/footer');

@@ -44,6 +44,10 @@ $this->load->view('admins/include/header');
                             <textarea class="form-control" id="welcome_msg" name="welcome_msg"><?= $this->sitesetting->getValue('welcome_msg'); ?></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="subscribe_msg">Subscribe Message</label>
+                            <textarea class="form-control" id="subscribe_msg" name="subscribe_msg"><?= $this->sitesetting->getValue('subscribe_msg'); ?></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="contact_text">Contact Message</label>
                             <textarea class="form-control" id="contact_text" name="contact_text"><?= $this->sitesetting->getValue('contact_text'); ?></textarea>
                             <p class="help-block">
@@ -55,7 +59,7 @@ $this->load->view('admins/include/header');
                             <input type="text" class="form-control" id="contact_email" name="contact_email"
                                    value="<?= $this->sitesetting->getValue('contact_email'); ?>">
                             <p class="help-block">
-                                Here you can define an email address which you want send an email if user submit contact form
+                                Here you can define an email which you want receive an email if user submit contact form
                             </p>
                         </div>
                         <div class="form-group">
