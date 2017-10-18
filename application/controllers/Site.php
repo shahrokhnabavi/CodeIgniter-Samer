@@ -68,12 +68,12 @@ class Site extends CI_Controller
 		$this->form_validation->set_rules('message', 'Message', 'trim|required');
 
 		//run validation on form input
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() !== FALSE)
+		// {
 			//validation fails
-			$this->load->view('visitor/contact');
-		}
-		else
+			// $this->load->view('visitor/contact');
+		// }
+		// else
 		{
 			//get the form data
 			$name = $this->input->post('name');
